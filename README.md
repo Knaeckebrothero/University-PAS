@@ -1,6 +1,6 @@
-# Project Title
+# PAS - WiSe 23/24
 
-One Paragraph of project description goes here. Explain what the project is about, what it does, and the value it provides to users.
+https://campuas.frankfurt-university.de/course/view.php?id=4641
 
 ## Table of Contents
 
@@ -13,17 +13,4 @@ One Paragraph of project description goes here. Explain what the project is abou
 
 ## Installation
 
-Describe the installation process here. Include any pre-requisites, required libraries, and how to get the development environment running.
-
-```bash
-# Example command line instructions
-pip install -r requirements.txt
-```
-
-## License
-
-This project is licensed under the terms of the Creative Commons Attribution 4.0 International License (CC BY 4.0) and the All Rights Reserved License. See the [LICENSE](LICENSE.txt) file for details.
-
-## Contact
-[Github](https://github.com/Knaeckebrothero) <br>
-[Mail](mailto:OverlyGenericAddress@pm.me) <br>
+https://docs.camunda.org/manual/latest/user-guide/spring-boot-integration/
