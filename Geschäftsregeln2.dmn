@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ce59aa" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.16.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.3.0">
+  <decision id="Decision_1nj3lql" name="Geschäftsregeln 2">
+    <decisionTable id="DecisionTable_1r3pl0v">
+      <input id="Input_1" label="Anmeldung erfolgt">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Voraussetzung für Anmeldung" typeRef="string" />
+      <rule id="DecisionRule_06un84y">
+        <description>-</description>
+        <inputEntry id="UnaryTests_0q8wf1u">
+          <text>Bachelor</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v6cauj">
+          <text>150 ECTS</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rqbx4q">
+        <description>-</description>
+        <inputEntry id="UnaryTests_17wvg97">
+          <text>Master (3 Sem.)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_165snl8">
+          <text>50 ECTS</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1koao8g">
+        <description>-</description>
+        <inputEntry id="UnaryTests_1c81j7l">
+          <text>Master (4 Sem.)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0terzyp">
+          <text>80 ECTS</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1nj3lql">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
