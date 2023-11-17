@@ -10,9 +10,10 @@
         <bpmn:flowNodeRef>Gateway_15dlx3h</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0qagy7b</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0k2u0ui</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_05tf0ql</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0solifs</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1gn0nwk</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_03s16zl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_19suzpm</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0oiy2mq" name="Prüfungsamt">
         <bpmn:flowNodeRef>Activity_17cvpka</bpmn:flowNodeRef>
@@ -41,11 +42,16 @@
         <bpmn:flowNodeRef>Activity_102tiai</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0l28k72</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0800v1t</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_19bqnso</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1l03372</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0i0g44d</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1g70092</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Anmeldung der Abschlussarbeit">
+      <bpmn:documentation>Voraussetzung für Anmeldung:
+Bachelor mind. 150 ECTS
+Master (3 Sem.) mind. 50 ECTS
+Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
       <bpmn:outgoing>Flow_0zvy7bc</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:task id="Activity_0zqb5lt" name="Antrag bearbeiten">
@@ -69,10 +75,12 @@ o Sprache der Arbeit</bpmn:documentation>
       <bpmn:outgoing>Flow_1fnz9zz</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:task id="Activity_04zntuv" name="Begründung hinzufügen">
+      <bpmn:documentation>Begründung wird der Arbeit hinzugefügt, falls auf Englisch geschrieben wird</bpmn:documentation>
       <bpmn:incoming>Flow_1iaojq9</bpmn:incoming>
       <bpmn:outgoing>Flow_04vnf9m</bpmn:outgoing>
     </bpmn:task>
     <bpmn:task id="Activity_0dc1uvj" name="Bestätigungen holen">
+      <bpmn:documentation>Bestätigungen zur Betreuung werden von beiden Betreuern eingeholt</bpmn:documentation>
       <bpmn:incoming>Flow_1fnz9zz</bpmn:incoming>
       <bpmn:outgoing>Flow_0j9wtpo</bpmn:outgoing>
     </bpmn:task>
@@ -88,14 +96,17 @@ o Sprache der Arbeit</bpmn:documentation>
       <bpmn:outgoing>Flow_0rdtrht</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:task id="Activity_045czg2" name="Arbeit bestätigen">
+      <bpmn:documentation>Abschlussarbeit wird bestätigt</bpmn:documentation>
       <bpmn:incoming>Flow_0fy7ye0</bpmn:incoming>
       <bpmn:outgoing>Flow_05wv34x</bpmn:outgoing>
     </bpmn:task>
     <bpmn:task id="Activity_18jsfd5" name="Arbeit bestätigen">
+      <bpmn:documentation>Abschlussarbeit wird bestätigt</bpmn:documentation>
       <bpmn:incoming>Flow_0ucddk7</bpmn:incoming>
       <bpmn:outgoing>Flow_1kx55n0</bpmn:outgoing>
     </bpmn:task>
     <bpmn:task id="Activity_1lqha5s" name="Antrag abschicken">
+      <bpmn:documentation>Antrag wird ans Prüfungsamt geschickt</bpmn:documentation>
       <bpmn:incoming>Flow_0rdtrht</bpmn:incoming>
       <bpmn:outgoing>Flow_0oumhlc</bpmn:outgoing>
     </bpmn:task>
@@ -113,6 +124,7 @@ o Sprache der Arbeit</bpmn:documentation>
     <bpmn:sequenceFlow id="Flow_0rdtrht" sourceRef="Gateway_1x5jsvv" targetRef="Activity_1lqha5s" />
     <bpmn:sequenceFlow id="Flow_0oumhlc" sourceRef="Activity_1lqha5s" targetRef="Activity_17cvpka" />
     <bpmn:task id="Activity_17cvpka" name="Antrag prüfen">
+      <bpmn:documentation>Antrag wird auf Vollständigkeit geprüft</bpmn:documentation>
       <bpmn:incoming>Flow_0oumhlc</bpmn:incoming>
       <bpmn:outgoing>Flow_19qf8lq</bpmn:outgoing>
     </bpmn:task>
@@ -125,6 +137,7 @@ o Sprache der Arbeit</bpmn:documentation>
     <bpmn:sequenceFlow id="Flow_0hdxnbu" name="nein" sourceRef="Gateway_1ebszvd" targetRef="Activity_1c2d63g" />
     <bpmn:sequenceFlow id="Flow_02765im" name="ja" sourceRef="Gateway_1ebszvd" targetRef="Gateway_1eqic5n" />
     <bpmn:task id="Activity_1c2d63g" name="E-Mail schicken">
+      <bpmn:documentation>E-Mail wird der/die Studierende geschickt und zum Nachreichen der Informationen aufgefordert</bpmn:documentation>
       <bpmn:incoming>Flow_0hdxnbu</bpmn:incoming>
       <bpmn:outgoing>Flow_0c4l5iu</bpmn:outgoing>
     </bpmn:task>
@@ -135,6 +148,7 @@ o Sprache der Arbeit</bpmn:documentation>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_07olzfo" name="ja" sourceRef="Gateway_1eqic5n" targetRef="Activity_1ufm3n1" />
     <bpmn:task id="Activity_1ufm3n1" name="Antrag prüfen">
+      <bpmn:documentation>Antrag wird auf fachliche und inhaltliche Mängel geprüft</bpmn:documentation>
       <bpmn:incoming>Flow_07olzfo</bpmn:incoming>
       <bpmn:outgoing>Flow_0au3vkk</bpmn:outgoing>
     </bpmn:task>
@@ -149,59 +163,96 @@ o Sprache der Arbeit</bpmn:documentation>
       <bpmn:outgoing>Flow_0q60ilg</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1nbv2z0" name="ja" sourceRef="Gateway_15dlx3h" targetRef="Event_0qagy7b" />
-    <bpmn:sequenceFlow id="Flow_0kxd8ng" sourceRef="Activity_05tf0ql" targetRef="Activity_0k2u0ui" />
     <bpmn:sequenceFlow id="Flow_1fh3k2a" sourceRef="Activity_0k2u0ui" targetRef="Activity_1w8kog5" />
     <bpmn:sequenceFlow id="Flow_197ai74" sourceRef="Activity_102tiai" targetRef="Gateway_1x5jsvv" />
     <bpmn:endEvent id="Event_0qagy7b" name="Antrag abgelehnt">
       <bpmn:incoming>Flow_1nbv2z0</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0ctocrk" sourceRef="Activity_1w8kog5" targetRef="Event_0i0g44d" />
+    <bpmn:sequenceFlow id="Flow_0ctocrk" sourceRef="Activity_1w8kog5" targetRef="Gateway_1l03372" />
     <bpmn:task id="Activity_0k2u0ui" name="Antrag genehmigen">
-      <bpmn:incoming>Flow_0kxd8ng</bpmn:incoming>
+      <bpmn:documentation>Antrag wird genehmigt
+Zeitraum festlegen (Start- und Enddatum)
+Entscheidung bezüglich Sprache der Arbeit fällen</bpmn:documentation>
+      <bpmn:incoming>Flow_0q60ilg</bpmn:incoming>
       <bpmn:outgoing>Flow_1fh3k2a</bpmn:outgoing>
     </bpmn:task>
     <bpmn:task id="Activity_1w8kog5" name="Abschlussarbeit bearbeiten">
+      <bpmn:documentation>Abschlussarbeit wird bearbeitet
+
+Maximale Bearbeitungszeit:
+Bachelor 9 Wochen
+Master 22 Wochen</bpmn:documentation>
       <bpmn:incoming>Flow_1fh3k2a</bpmn:incoming>
       <bpmn:outgoing>Flow_0ctocrk</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_0c4l5iu" sourceRef="Activity_1c2d63g" targetRef="Activity_102tiai" />
     <bpmn:task id="Activity_102tiai" name="Informationen nachreichen">
+      <bpmn:documentation>fehlende Informationen werden nachgereicht</bpmn:documentation>
       <bpmn:incoming>Flow_0c4l5iu</bpmn:incoming>
       <bpmn:outgoing>Flow_197ai74</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:sequenceFlow id="Flow_0q60ilg" sourceRef="Gateway_15dlx3h" targetRef="Activity_05tf0ql" />
-    <bpmn:task id="Activity_05tf0ql" name="Zeitraum festlegen">
-      <bpmn:incoming>Flow_0q60ilg</bpmn:incoming>
-      <bpmn:outgoing>Flow_0kxd8ng</bpmn:outgoing>
-    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0q60ilg" name="nein" sourceRef="Gateway_15dlx3h" targetRef="Activity_0k2u0ui" />
     <bpmn:sequenceFlow id="Flow_01qnkcw" sourceRef="Event_0800v1t" targetRef="Activity_0l28k72" />
-    <bpmn:task id="Activity_0l28k72" name="Verlängerung angeben">
+    <bpmn:task id="Activity_0l28k72" name="Verlängerung beantragen">
+      <bpmn:documentation>Antrag auf Bearbeitungszeit kann gestellt werden, falls Gründe vorliegen, die er/sie nicht zu verantworten hat.
+
+Grund hinzufügen
+
+Krankheit: Zeitraum aus Attest
+Extern: Vorgeschlagen durch Betreuer
+Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
+</bpmn:documentation>
       <bpmn:incoming>Flow_01qnkcw</bpmn:incoming>
       <bpmn:outgoing>Flow_08eslns</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:boundaryEvent id="Event_0800v1t" attachedToRef="Activity_1w8kog5">
+    <bpmn:boundaryEvent id="Event_0800v1t" name="Bedarf Verlängerung" attachedToRef="Activity_1w8kog5">
       <bpmn:outgoing>Flow_01qnkcw</bpmn:outgoing>
       <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_0s1yzv2">
         <bpmn:condition xsi:type="bpmn:tFormalExpression" />
       </bpmn:conditionalEventDefinition>
     </bpmn:boundaryEvent>
-    <bpmn:task id="Activity_19bqnso" name="Grund hinzufügen">
-      <bpmn:incoming>Flow_08eslns</bpmn:incoming>
-      <bpmn:outgoing>Flow_03slced</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="Flow_08eslns" sourceRef="Activity_0l28k72" targetRef="Activity_19bqnso" />
-    <bpmn:sequenceFlow id="Flow_03slced" sourceRef="Activity_19bqnso" targetRef="Activity_0solifs" />
+    <bpmn:sequenceFlow id="Flow_08eslns" sourceRef="Activity_0l28k72" targetRef="Activity_0solifs" />
     <bpmn:task id="Activity_0solifs" name="Verlängerung prüfen">
-      <bpmn:incoming>Flow_03slced</bpmn:incoming>
+      <bpmn:documentation>Antrag wird auf Validität geprüft</bpmn:documentation>
+      <bpmn:incoming>Flow_08eslns</bpmn:incoming>
       <bpmn:outgoing>Flow_1dyum7d</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:sequenceFlow id="Flow_1dyum7d" sourceRef="Activity_0solifs" targetRef="Activity_03s16zl" />
-    <bpmn:task id="Activity_03s16zl" name="Verlängerung genehmigen">
+    <bpmn:sequenceFlow id="Flow_1dyum7d" sourceRef="Activity_0solifs" targetRef="Gateway_1gn0nwk" />
+    <bpmn:exclusiveGateway id="Gateway_1gn0nwk" name="Ist der Antrag valide?">
       <bpmn:incoming>Flow_1dyum7d</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hux9ut</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0mi8zk2</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0hux9ut" name="ja" sourceRef="Gateway_1gn0nwk" targetRef="Activity_03s16zl" />
+    <bpmn:task id="Activity_03s16zl" name="Verlängerung genehmigen">
+      <bpmn:documentation>angefragte Verlängerung wird genehmigt</bpmn:documentation>
+      <bpmn:incoming>Flow_0hux9ut</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xu85xz</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:endEvent id="Event_0i0g44d" name="Arbeit abgegeben">
+    <bpmn:sequenceFlow id="Flow_0mi8zk2" name="nein" sourceRef="Gateway_1gn0nwk" targetRef="Activity_19suzpm" />
+    <bpmn:sequenceFlow id="Flow_1adaf1y" sourceRef="Gateway_1l03372" targetRef="Activity_1g70092" />
+    <bpmn:sequenceFlow id="Flow_1xu85xz" sourceRef="Activity_03s16zl" targetRef="Gateway_1l03372" />
+    <bpmn:exclusiveGateway id="Gateway_1l03372">
       <bpmn:incoming>Flow_0ctocrk</bpmn:incoming>
+      <bpmn:incoming>Flow_1xu85xz</bpmn:incoming>
+      <bpmn:incoming>Flow_10r6bbi</bpmn:incoming>
+      <bpmn:outgoing>Flow_1adaf1y</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Activity_19suzpm" name="Antrag ablehnen">
+      <bpmn:documentation>Antrag wird abgelehnt, da nicht valide</bpmn:documentation>
+      <bpmn:incoming>Flow_0mi8zk2</bpmn:incoming>
+      <bpmn:outgoing>Flow_10r6bbi</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_10r6bbi" sourceRef="Activity_19suzpm" targetRef="Gateway_1l03372" />
+    <bpmn:endEvent id="Event_0i0g44d" name="Arbeit abgegeben">
+      <bpmn:incoming>Flow_1gms7hd</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:task id="Activity_1g70092" name="Arbeit abgeben">
+      <bpmn:documentation>Arbeit wird fristgemäß abgegeben (falls Verlängerung stattgegeben, wird Frist um X verlängert)</bpmn:documentation>
+      <bpmn:incoming>Flow_1adaf1y</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gms7hd</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1gms7hd" sourceRef="Activity_1g70092" targetRef="Event_0i0g44d" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17pmjaa">
@@ -209,24 +260,24 @@ o Sprache der Arbeit</bpmn:documentation>
         <dc:Bounds x="129" y="80" width="3771" height="1440" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_1a3la9o_di" bpmnElement="Lane_1a3la9o" isHorizontal="true">
-        <dc:Bounds x="159" y="1040" width="3741" height="480" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0oiy2mq_di" bpmnElement="Lane_0oiy2mq" isHorizontal="true">
-        <dc:Bounds x="159" y="790" width="3741" height="250" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_17pglki_di" bpmnElement="Lane_17pglki" isHorizontal="true">
-        <dc:Bounds x="159" y="610" width="3741" height="180" />
+      <bpmndi:BPMNShape id="Lane_0l625kn_di" bpmnElement="Lane_0l625kn" isHorizontal="true">
+        <dc:Bounds x="159" y="80" width="3741" height="399" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0locvwr_di" bpmnElement="Lane_0locvwr" isHorizontal="true">
         <dc:Bounds x="159" y="479" width="3741" height="131" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0l625kn_di" bpmnElement="Lane_0l625kn" isHorizontal="true">
-        <dc:Bounds x="159" y="80" width="3741" height="399" />
+      <bpmndi:BPMNShape id="Lane_17pglki_di" bpmnElement="Lane_17pglki" isHorizontal="true">
+        <dc:Bounds x="159" y="610" width="3741" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0oiy2mq_di" bpmnElement="Lane_0oiy2mq" isHorizontal="true">
+        <dc:Bounds x="159" y="790" width="3741" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1a3la9o_di" bpmnElement="Lane_1a3la9o" isHorizontal="true">
+        <dc:Bounds x="159" y="1040" width="3741" height="480" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
@@ -288,10 +339,6 @@ o Sprache der Arbeit</bpmn:documentation>
         <dc:Bounds x="1970" y="860" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_102tiai_di" bpmnElement="Activity_102tiai">
-        <dc:Bounds x="1970" y="300" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1eqic5n_di" bpmnElement="Gateway_1eqic5n" isMarkerVisible="true">
         <dc:Bounds x="2155" y="935" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -328,34 +375,50 @@ o Sprache der Arbeit</bpmn:documentation>
         <dc:Bounds x="2880" y="300" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_05tf0ql_di" bpmnElement="Activity_05tf0ql">
-        <dc:Bounds x="2560" y="1150" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_102tiai_di" bpmnElement="Activity_102tiai">
+        <dc:Bounds x="1970" y="300" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0l28k72_di" bpmnElement="Activity_0l28k72">
         <dc:Bounds x="3080" y="390" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_19bqnso_di" bpmnElement="Activity_19bqnso">
-        <dc:Bounds x="3270" y="390" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0solifs_di" bpmnElement="Activity_0solifs">
         <dc:Bounds x="3270" y="1170" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1gn0nwk_di" bpmnElement="Gateway_1gn0nwk" isMarkerVisible="true">
+        <dc:Bounds x="3415" y="1185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3407" y="1147.5" width="66" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_03s16zl_di" bpmnElement="Activity_03s16zl">
-        <dc:Bounds x="3450" y="1170" width="100" height="80" />
+        <dc:Bounds x="3550" y="1170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1l03372_di" bpmnElement="Gateway_1l03372" isMarkerVisible="true">
+        <dc:Bounds x="3575" y="315" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_19suzpm_di" bpmnElement="Activity_19suzpm">
+        <dc:Bounds x="3700" y="1270" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0i0g44d_di" bpmnElement="Event_0i0g44d">
-        <dc:Bounds x="3542" y="322" width="36" height="36" />
+        <dc:Bounds x="3792" y="322" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3517" y="365" width="87" height="14" />
+          <dc:Bounds x="3767" y="365" width="87" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1g70092_di" bpmnElement="Activity_1g70092">
+        <dc:Bounds x="3650" y="300" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1wsn6ho_di" bpmnElement="Event_0800v1t">
         <dc:Bounds x="2962" y="362" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3007" y="370" width="65" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0zvy7bc_di" bpmnElement="Flow_0zvy7bc">
         <di:waypoint x="268" y="340" />
@@ -433,10 +496,6 @@ o Sprache der Arbeit</bpmn:documentation>
           <dc:Bounds x="1921" y="877" width="21" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0c4l5iu_di" bpmnElement="Flow_0c4l5iu">
-        <di:waypoint x="2020" y="860" />
-        <di:waypoint x="2020" y="380" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02765im_di" bpmnElement="Flow_02765im">
         <di:waypoint x="1850" y="925" />
         <di:waypoint x="1850" y="960" />
@@ -471,10 +530,6 @@ o Sprache der Arbeit</bpmn:documentation>
           <dc:Bounds x="2361" y="1277" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0kxd8ng_di" bpmnElement="Flow_0kxd8ng">
-        <di:waypoint x="2660" y="1190" />
-        <di:waypoint x="2880" y="1190" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1fh3k2a_di" bpmnElement="Flow_1fh3k2a">
         <di:waypoint x="2930" y="1150" />
         <di:waypoint x="2930" y="380" />
@@ -487,11 +542,18 @@ o Sprache der Arbeit</bpmn:documentation>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ctocrk_di" bpmnElement="Flow_0ctocrk">
         <di:waypoint x="2980" y="340" />
-        <di:waypoint x="3542" y="340" />
+        <di:waypoint x="3575" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c4l5iu_di" bpmnElement="Flow_0c4l5iu">
+        <di:waypoint x="2020" y="860" />
+        <di:waypoint x="2020" y="380" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0q60ilg_di" bpmnElement="Flow_0q60ilg">
         <di:waypoint x="2375" y="1190" />
-        <di:waypoint x="2560" y="1190" />
+        <di:waypoint x="2880" y="1190" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2467" y="1172" width="21" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_01qnkcw_di" bpmnElement="Flow_01qnkcw">
         <di:waypoint x="2980" y="398" />
@@ -500,15 +562,45 @@ o Sprache der Arbeit</bpmn:documentation>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08eslns_di" bpmnElement="Flow_08eslns">
         <di:waypoint x="3180" y="430" />
-        <di:waypoint x="3270" y="430" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_03slced_di" bpmnElement="Flow_03slced">
-        <di:waypoint x="3320" y="470" />
+        <di:waypoint x="3320" y="430" />
         <di:waypoint x="3320" y="1170" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1dyum7d_di" bpmnElement="Flow_1dyum7d">
         <di:waypoint x="3370" y="1210" />
-        <di:waypoint x="3450" y="1210" />
+        <di:waypoint x="3415" y="1210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hux9ut_di" bpmnElement="Flow_0hux9ut">
+        <di:waypoint x="3465" y="1210" />
+        <di:waypoint x="3550" y="1210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3504" y="1192" width="8" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mi8zk2_di" bpmnElement="Flow_0mi8zk2">
+        <di:waypoint x="3440" y="1235" />
+        <di:waypoint x="3440" y="1310" />
+        <di:waypoint x="3700" y="1310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3594" y="1293" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1adaf1y_di" bpmnElement="Flow_1adaf1y">
+        <di:waypoint x="3625" y="340" />
+        <di:waypoint x="3650" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xu85xz_di" bpmnElement="Flow_1xu85xz">
+        <di:waypoint x="3600" y="1170" />
+        <di:waypoint x="3600" y="365" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10r6bbi_di" bpmnElement="Flow_10r6bbi">
+        <di:waypoint x="3750" y="1270" />
+        <di:waypoint x="3750" y="430" />
+        <di:waypoint x="3600" y="430" />
+        <di:waypoint x="3600" y="365" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gms7hd_di" bpmnElement="Flow_1gms7hd">
+        <di:waypoint x="3750" y="340" />
+        <di:waypoint x="3792" y="340" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
