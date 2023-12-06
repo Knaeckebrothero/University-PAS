@@ -1,0 +1,114 @@
+{
+  "components": [
+    {
+      "label": "Name des/der Studierenden",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cgip2r",
+        "columns": null
+      },
+      "id": "Field_1b8l3pp",
+      "key": "student_name"
+    },
+    {
+      "label": "Titel der Arbeit",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_02t4so0",
+        "columns": null
+      },
+      "id": "Field_1v5wm71",
+      "key": "titel_name"
+    },
+    {
+      "label": "Erstbetreuer",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1hp55xn",
+        "columns": null
+      },
+      "id": "Field_15m6eej",
+      "key": "erstbetreuer_name"
+    },
+    {
+      "label": "Zweitbetreuer",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_19bdrjt",
+        "columns": null
+      },
+      "id": "Field_1eya9wl",
+      "key": "zweitbetreuer_name"
+    },
+    {
+      "label": "Studiengang",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1axeuwf",
+        "columns": null
+      },
+      "id": "Field_0di29na",
+      "key": "studiengang"
+    },
+    {
+      "values": [
+        {
+          "label": "Bachelor",
+          "value": "Bachelor"
+        },
+        {
+          "label": "Master",
+          "value": "Master"
+        }
+      ],
+      "label": "Art des Abschlusses",
+      "type": "select",
+      "layout": {
+        "row": "Row_1fs1tzq",
+        "columns": null
+      },
+      "id": "Field_03fo4bh",
+      "key": "abschlusart"
+    },
+    {
+      "values": [
+        {
+          "label": "Deutsch",
+          "value": "Deutsch"
+        },
+        {
+          "label": "Englisch",
+          "value": "Englisch"
+        }
+      ],
+      "label": "Sprache der Arbeit",
+      "type": "select",
+      "layout": {
+        "row": "Row_1ll7j7e",
+        "columns": null
+      },
+      "id": "Field_1wm3aka",
+      "key": "language",
+      "defaultValue": "Deutsch"
+    },
+    {
+      "label": "Begründung",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1iqoujk",
+        "columns": null
+      },
+      "id": "Field_0m4xasw",
+      "key": "begruendung"
+    }
+  ],
+  "type": "default",
+  "id": "eingabe_form",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.16.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 11
+}
