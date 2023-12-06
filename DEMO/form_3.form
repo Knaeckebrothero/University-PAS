@@ -1,0 +1,79 @@
+{
+  "components": [
+    {
+      "label": "Student Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_07p51g7",
+        "columns": null
+      },
+      "id": "Field_1powfh0",
+      "key": "student_name",
+      "readonly": true
+    },
+    {
+      "label": "Titel",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0b9z06v",
+        "columns": null
+      },
+      "id": "Field_0q9sgkr",
+      "key": "titel_name",
+      "readonly": true
+    },
+    {
+      "label": "Erstbetreuer",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1g7jxkk",
+        "columns": null
+      },
+      "id": "Field_00nnr1u",
+      "key": "textfield_bes3c",
+      "readonly": true
+    },
+    {
+      "label": "Zweitbetreuer",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1g7jxkk",
+        "columns": null
+      },
+      "id": "Field_0q6j26y",
+      "key": "textfield_58rh4",
+      "readonly": true
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Abgabedatum",
+      "label": "Date time",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_10a93z8",
+        "columns": null
+      },
+      "id": "Field_1t69w22",
+      "key": "abgabe_id"
+    },
+    {
+      "label": "Vollständig",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_10a93z8",
+        "columns": null
+      },
+      "id": "Field_0mom99q",
+      "key": "checkbox_voll"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0h4nicp",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.16.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 11
+}
