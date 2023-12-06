@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0xciuuw" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.16.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0xciuuw" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.16.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
   <bpmn:process id="Process_0rrnf4r" isExecutable="true" camunda:historyTimeToLive="180">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_1m3bqvi</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_13vm03j" name="Anmeldung einreichen">
+    <bpmn:userTask id="Activity_13vm03j" name="Anmeldung einreichen" camunda:formRef="form_1" camunda:formRefBinding="deployment" camunda:assignee="demo">
       <bpmn:incoming>Flow_1m3bqvi</bpmn:incoming>
       <bpmn:incoming>Flow_18pl7qt</bpmn:incoming>
       <bpmn:outgoing>Flow_1kbs5fx</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1m3bqvi" sourceRef="StartEvent_1" targetRef="Activity_13vm03j" />
-    <bpmn:userTask id="Activity_0k5p6h9" name="Anmleldung prüfen">
+    <bpmn:userTask id="Activity_0k5p6h9" name="Anmeldung prüfen" camunda:formRef="form_2" camunda:formRefBinding="deployment" camunda:assignee="demo">
       <bpmn:incoming>Flow_1kbs5fx</bpmn:incoming>
       <bpmn:outgoing>Flow_0jgzjot</bpmn:outgoing>
     </bpmn:userTask>
@@ -21,12 +21,16 @@
       <bpmn:outgoing>Flow_0usr2cv</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0jgzjot" name="Antrag vollständig" sourceRef="Activity_0k5p6h9" targetRef="Gateway_10ras5c" />
-    <bpmn:sequenceFlow id="Flow_18pl7qt" name="ANtrag nicht vollständig" sourceRef="Gateway_10ras5c" targetRef="Activity_13vm03j" />
-    <bpmn:userTask id="Activity_07ppfb4" name="Anmeldung bestätigen">
+    <bpmn:sequenceFlow id="Flow_18pl7qt" name="ANtrag nicht vollständig" sourceRef="Gateway_10ras5c" targetRef="Activity_13vm03j">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_voll}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Activity_07ppfb4" name="Anmeldung bestätigen" camunda:formRef="form_3" camunda:formRefBinding="deployment" camunda:assignee="demo">
       <bpmn:incoming>Flow_0usr2cv</bpmn:incoming>
       <bpmn:outgoing>Flow_1wt82gk</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0usr2cv" sourceRef="Gateway_10ras5c" targetRef="Activity_07ppfb4" />
+    <bpmn:sequenceFlow id="Flow_0usr2cv" sourceRef="Gateway_10ras5c" targetRef="Activity_07ppfb4">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_voll}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_1sk85to" name="Anmeldung angemeldet">
       <bpmn:incoming>Flow_1wt82gk</bpmn:incoming>
     </bpmn:endEvent>
