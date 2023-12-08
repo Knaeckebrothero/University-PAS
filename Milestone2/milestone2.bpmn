@@ -77,7 +77,7 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
     <bpmn:endEvent id="Event_0qagy7b" name="Antrag abgelehnt">
       <bpmn:incoming>Flow_1nbv2z0</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_08owjke" name="Antrag stellen" camunda:formRef="" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="Activity_08owjke" name="Antrag stellen" camunda:formRef="Antragsstellung" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:incoming>Flow_0zvy7bc</bpmn:incoming>
       <bpmn:incoming>Flow_09svcwk</bpmn:incoming>
       <bpmn:outgoing>Flow_0cx4u8s</bpmn:outgoing>
@@ -97,7 +97,7 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
       <bpmn:incoming>Flow_001pbad</bpmn:incoming>
       <bpmn:outgoing>Flow_19qf8lq</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_0mg7pap" default="Flow_001pbad">
+    <bpmn:exclusiveGateway id="Gateway_0mg7pap" default="Flow_09svcwk">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0rdtrht</bpmn:incoming>
       <bpmn:outgoing>Flow_001pbad</bpmn:outgoing>
@@ -183,7 +183,9 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_ibuax5}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_09svcwk" sourceRef="Gateway_0mg7pap" targetRef="Activity_08owjke" />
-    <bpmn:sequenceFlow id="Flow_001pbad" sourceRef="Gateway_0mg7pap" targetRef="Activity_17cvpka" />
+    <bpmn:sequenceFlow id="Flow_001pbad" sourceRef="Gateway_0mg7pap" targetRef="Activity_17cvpka">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_j5nzzg} and ${checkbox_hyec5}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_07olzfo" name="ja" sourceRef="Gateway_1eqic5n" targetRef="Activity_1ufm3n1">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_ibuax5}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -199,24 +201,24 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <dc:Bounds x="159" y="65" width="4351" height="1440" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_1a3la9o_di" bpmnElement="Lane_1a3la9o" isHorizontal="true">
-        <dc:Bounds x="189" y="1025" width="4321" height="480" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0oiy2mq_di" bpmnElement="Lane_0oiy2mq" isHorizontal="true">
-        <dc:Bounds x="189" y="775" width="4321" height="250" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_17pglki_di" bpmnElement="Lane_17pglki" isHorizontal="true">
-        <dc:Bounds x="189" y="595" width="4321" height="180" />
+      <bpmndi:BPMNShape id="Lane_0l625kn_di" bpmnElement="Lane_0l625kn" isHorizontal="true">
+        <dc:Bounds x="189" y="65" width="4321" height="399" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0locvwr_di" bpmnElement="Lane_0locvwr" isHorizontal="true">
         <dc:Bounds x="189" y="464" width="4321" height="131" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0l625kn_di" bpmnElement="Lane_0l625kn" isHorizontal="true">
-        <dc:Bounds x="189" y="65" width="4321" height="399" />
+      <bpmndi:BPMNShape id="Lane_17pglki_di" bpmnElement="Lane_17pglki" isHorizontal="true">
+        <dc:Bounds x="189" y="595" width="4321" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0oiy2mq_di" bpmnElement="Lane_0oiy2mq" isHorizontal="true">
+        <dc:Bounds x="189" y="775" width="4321" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1a3la9o_di" bpmnElement="Lane_1a3la9o" isHorizontal="true">
+        <dc:Bounds x="189" y="1025" width="4321" height="480" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">

@@ -17,6 +17,10 @@
       "values": [
         {
           "label": "Bachelor",
+          "value": "Bachelor"
+        },
+        {
+          "label": "Master",
           "value": "Master"
         }
       ],
