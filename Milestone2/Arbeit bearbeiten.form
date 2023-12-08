@@ -1,0 +1,29 @@
+{
+  "components": [
+    {
+      "values": [
+        {
+          "label": "Verlängerung gewünscht",
+          "value": "verlängerung"
+        }
+      ],
+      "label": "",
+      "type": "checklist",
+      "layout": {
+        "row": "Row_0as9ap5",
+        "columns": null
+      },
+      "id": "Field_0t5y466",
+      "key": "checkbox_36lsdf"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0uf2ve7",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.16.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 11
+}
