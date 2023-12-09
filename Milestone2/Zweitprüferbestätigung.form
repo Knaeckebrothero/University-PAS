@@ -12,27 +12,19 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
-      "values": [
-        {
-          "label": "Bachelor",
-          "value": "Master"
-        }
-      ],
       "label": "Art des Abschlusses",
-      "type": "select",
+      "type": "textfield",
       "layout": {
-        "row": "Row_1t75cpb",
+        "row": "Row_0mor1i2",
         "columns": null
       },
-      "id": "Field_0f9lf36",
+      "id": "Field_1rknxdv",
       "key": "select_hxofn3a",
-      "defaultValue": "<none>",
-      "validate": {
-        "required": true
-      },
+      "disabled": true,
       "readonly": true
     },
     {
@@ -47,7 +39,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Matrikelnummer:",
@@ -61,7 +54,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Titel der Arbeit",
@@ -75,7 +69,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Erstbetreuer",
@@ -89,7 +84,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Zweitbetreuer",
@@ -103,7 +99,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Arbeit auf Englisch",
@@ -115,7 +112,8 @@
       "id": "Field_1n4fdis",
       "key": "checkbox_io2fki",
       "properties": {},
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Begründung hinzufügen",
@@ -132,7 +130,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Betreuung Bestätigen",
@@ -145,7 +144,8 @@
       "key": "checkbox_hyec5",
       "validate": {
         "required": false
-      }
+      },
+      "properties": {}
     }
   ],
   "type": "default",
