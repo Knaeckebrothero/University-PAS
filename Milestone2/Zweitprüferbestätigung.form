@@ -134,18 +134,24 @@
       "disabled": true
     },
     {
-      "label": "Betreuung Bestätigen",
-      "type": "checkbox",
+      "values": [
+        {
+          "label": "Bestätigen",
+          "value": "true"
+        },
+        {
+          "label": "Ablehnen",
+          "value": "false"
+        }
+      ],
+      "label": "Betreuung Zu/Absagen",
+      "type": "select",
       "layout": {
         "row": "Row_0w4esem",
         "columns": null
       },
-      "id": "Field_044h80q",
-      "key": "checkbox_hyec5",
-      "validate": {
-        "required": false
-      },
-      "properties": {}
+      "id": "Field_0f3iu0d",
+      "key": "select_p84w9v"
     }
   ],
   "type": "default",

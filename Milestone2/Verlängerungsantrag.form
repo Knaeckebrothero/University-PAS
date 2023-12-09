@@ -1,16 +1,6 @@
 {
   "components": [
     {
-      "label": "Verlängerung gewünscht",
-      "type": "checkbox",
-      "layout": {
-        "row": "Row_09v6bw1",
-        "columns": null
-      },
-      "id": "Field_0vgugjq",
-      "key": "checkbox_36lsdf"
-    },
-    {
       "values": [
         {
           "label": "Krankheit",
@@ -29,22 +19,7 @@
       },
       "id": "Field_1rm4ksk",
       "key": "select_mfedse",
-      "conditional": {
-        "hide": "=checkbox_36lsdf = false"
-      }
-    },
-    {
-      "text": "## Attest vorlegen",
-      "label": "Text view",
-      "type": "text",
-      "layout": {
-        "row": "Row_0sl6bop",
-        "columns": null
-      },
-      "id": "Field_0dwu5lw",
-      "conditional": {
-        "hide": "=select_mfedse != \"krank\""
-      }
+      "defaultValue": "<none>"
     },
     {
       "label": "Krankheit",
@@ -57,19 +32,6 @@
       "key": "textarea_ai0f6",
       "conditional": {
         "hide": "=select_mfedse != \"krank\""
-      }
-    },
-    {
-      "text": "## Vorschlag durch Betreuer vorlegen\n\nMaximum: 6 Wochen (Bachelor) 8 Wochen (Master)",
-      "label": "Text view",
-      "type": "text",
-      "layout": {
-        "row": "Row_1tyknmx",
-        "columns": null
-      },
-      "id": "Field_0cftksw",
-      "conditional": {
-        "hide": "=select_mfedse != \"extern\""
       }
     },
     {

@@ -12,28 +12,20 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
-      "values": [
-        {
-          "label": "Bachelor",
-          "value": "Master"
-        }
-      ],
       "label": "Art des Abschlusses",
-      "type": "select",
+      "type": "textfield",
       "layout": {
         "row": "Row_1t75cpb",
         "columns": null
       },
-      "id": "Field_0f9lf36",
+      "id": "Field_0lmvldp",
       "key": "select_hxofn3a",
-      "defaultValue": "<none>",
-      "validate": {
-        "required": true
-      },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Name Student",
@@ -47,7 +39,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Matrikelnummer:",
@@ -61,7 +54,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Titel der Arbeit",
@@ -75,7 +69,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Erstbetreuer",
@@ -89,7 +84,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Zweitbetreuer",
@@ -103,7 +99,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Arbeit auf Englisch",
@@ -115,7 +112,8 @@
       "id": "Field_1n4fdis",
       "key": "checkbox_io2fki",
       "properties": {},
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Begründung hinzufügen",
@@ -132,7 +130,8 @@
       "validate": {
         "required": true
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Betreuung Bestätigt",
@@ -147,7 +146,8 @@
         "required": false
       },
       "readonly": true,
-      "defaultValue": true
+      "defaultValue": true,
+      "disabled": true
     },
     {
       "values": [
@@ -184,16 +184,16 @@
       }
     },
     {
-      "label": "Voraussetzungen erfüllt",
+      "label": "Voraussetzung erfüllt",
       "type": "checkbox",
       "layout": {
-        "row": "Row_0aqdggt",
+        "row": "Row_0wuarjt",
         "columns": null
       },
-      "id": "Field_191m5qh",
-      "key": "checkbox_ibuax5",
-      "validate": {
-        "required": true
+      "id": "Field_19rpxqq",
+      "key": "checkbox_kn65t",
+      "conditional": {
+        "hide": "=select_1rb6t != \"true\""
       }
     }
   ],

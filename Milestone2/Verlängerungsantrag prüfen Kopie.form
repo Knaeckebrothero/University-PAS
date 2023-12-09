@@ -19,23 +19,8 @@
       },
       "id": "Field_1rm4ksk",
       "key": "select_mfedse",
-      "conditional": {
-        "hide": "=checkbox_36lsdf = false"
-      },
-      "readonly": true
-    },
-    {
-      "text": "## Attest vorlegen",
-      "label": "Text view",
-      "type": "text",
-      "layout": {
-        "row": "Row_0sl6bop",
-        "columns": null
-      },
-      "id": "Field_0dwu5lw",
-      "conditional": {
-        "hide": "=select_mfedse != \"krank\""
-      }
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Krankheit",
@@ -49,20 +34,8 @@
       "conditional": {
         "hide": "=select_mfedse != \"krank\""
       },
-      "readonly": true
-    },
-    {
-      "text": "## Vorschlag durch Betreuer vorlegen\n\nMaximum: 6 Wochen (Bachelor) 8 Wochen (Master)",
-      "label": "Text view",
-      "type": "text",
-      "layout": {
-        "row": "Row_1tyknmx",
-        "columns": null
-      },
-      "id": "Field_0cftksw",
-      "conditional": {
-        "hide": "=select_mfedse != \"extern\""
-      }
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Extern",
@@ -76,7 +49,8 @@
       "conditional": {
         "hide": "=select_mfedse != \"extern\""
       },
-      "readonly": true
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Antrag valide",

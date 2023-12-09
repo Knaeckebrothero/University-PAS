@@ -15,25 +15,14 @@
       "readonly": false
     },
     {
-      "values": [
-        {
-          "label": "Bachelor",
-          "value": "Master"
-        }
-      ],
       "label": "Art des Abschlusses",
-      "type": "select",
+      "type": "textfield",
       "layout": {
-        "row": "Row_1t75cpb",
+        "row": "Row_0h5vl97",
         "columns": null
       },
-      "id": "Field_0f9lf36",
-      "key": "select_hxofn3a",
-      "defaultValue": "<none>",
-      "validate": {
-        "required": true
-      },
-      "readonly": false
+      "id": "Field_1paiogw",
+      "key": "textfield_8kb9wq"
     },
     {
       "label": "Name Student",
@@ -181,19 +170,6 @@
       "key": "textarea_dyh4g7",
       "conditional": {
         "hide": "=select_1rb6t = \"true\""
-      }
-    },
-    {
-      "label": "Voraussetzungen erfüllt",
-      "type": "checkbox",
-      "layout": {
-        "row": "Row_0aqdggt",
-        "columns": null
-      },
-      "id": "Field_191m5qh",
-      "key": "checkbox_ibuax5",
-      "validate": {
-        "required": true
       }
     }
   ],

@@ -6,24 +6,6 @@
   </bpmn:collaboration>
   <bpmn:process id="Process_13yfkyo" isExecutable="true" camunda:historyTimeToLive="180">
     <bpmn:laneSet id="LaneSet_1rw1xdk">
-      <bpmn:lane id="Lane_1a3la9o" name="Vorsitzender">
-        <bpmn:flowNodeRef>Gateway_15dlx3h</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0qagy7b</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1ufm3n1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0solifs</bpmn:flowNodeRef>
-      </bpmn:lane>
-      <bpmn:lane id="Lane_0oiy2mq" name="Prüfungsamt">
-        <bpmn:flowNodeRef>Gateway_1ebszvd</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0kd5wjc</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_17cvpka</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1eqic5n</bpmn:flowNodeRef>
-      </bpmn:lane>
-      <bpmn:lane id="Lane_17pglki" name="Zweitbetreuer">
-        <bpmn:flowNodeRef>Activity_18jsfd5</bpmn:flowNodeRef>
-      </bpmn:lane>
-      <bpmn:lane id="Lane_0locvwr" name="Erstbetreuer">
-        <bpmn:flowNodeRef>Activity_045czg2</bpmn:flowNodeRef>
-      </bpmn:lane>
       <bpmn:lane id="Lane_0l625kn" name="Studierende">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_032r4zw</bpmn:flowNodeRef>
@@ -36,6 +18,24 @@
         <bpmn:flowNodeRef>Gateway_10v1of5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0l28k72</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0mg7pap</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0locvwr" name="Erstbetreuer">
+        <bpmn:flowNodeRef>Activity_045czg2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_17pglki" name="Zweitbetreuer">
+        <bpmn:flowNodeRef>Activity_18jsfd5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0oiy2mq" name="Prüfungsamt">
+        <bpmn:flowNodeRef>Gateway_1ebszvd</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0kd5wjc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_17cvpka</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1eqic5n</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1a3la9o" name="Vorsitzender">
+        <bpmn:flowNodeRef>Gateway_15dlx3h</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0qagy7b</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ufm3n1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0solifs</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="Anmeldung möglich">
@@ -53,13 +53,12 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
     <bpmn:parallelGateway id="Gateway_1x5jsvv">
       <bpmn:incoming>Flow_05wv34x</bpmn:incoming>
       <bpmn:incoming>Flow_1kx55n0</bpmn:incoming>
-      <bpmn:incoming>Flow_197ai74</bpmn:incoming>
       <bpmn:outgoing>Flow_0rdtrht</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:exclusiveGateway id="Gateway_1ebszvd" name="Ist die Anmeldung vollständig?">
       <bpmn:incoming>Flow_19qf8lq</bpmn:incoming>
-      <bpmn:outgoing>Flow_0hdxnbu</bpmn:outgoing>
       <bpmn:outgoing>Flow_02765im</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0hdxnbu</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:exclusiveGateway id="Gateway_15dlx3h" name="Sind Mängel vorhanden?">
       <bpmn:incoming>Flow_0au3vkk</bpmn:incoming>
@@ -80,6 +79,7 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
     <bpmn:userTask id="Activity_08owjke" name="Antrag stellen" camunda:formRef="Antragsstellung" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:incoming>Flow_0zvy7bc</bpmn:incoming>
       <bpmn:incoming>Flow_09svcwk</bpmn:incoming>
+      <bpmn:incoming>Flow_019bo93</bpmn:incoming>
       <bpmn:outgoing>Flow_0cx4u8s</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_045czg2" name="Arbeit bestätigen" camunda:formRef="Bestaetigungeins" camunda:formRefBinding="latest" camunda:assignee="demo">
@@ -100,14 +100,14 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
     <bpmn:userTask id="Activity_102tiai" name="Informationen nachreichen" camunda:formRef="Infonachreichen" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:documentation>fehlende Informationen werden nachgereicht</bpmn:documentation>
       <bpmn:incoming>Flow_0hdxnbu</bpmn:incoming>
-      <bpmn:outgoing>Flow_197ai74</bpmn:outgoing>
+      <bpmn:outgoing>Flow_019bo93</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_1eqic5n" name="Sind die Voraussetzungen erfüllt?">
       <bpmn:incoming>Flow_02765im</bpmn:incoming>
       <bpmn:outgoing>Flow_07olzfo</bpmn:outgoing>
       <bpmn:outgoing>Flow_0wbam3w</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_1ufm3n1" name="Antrag prüfen" camunda:formRef="Vorsitzbestaetigung" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="Activity_1ufm3n1" name="Angaben überprüfen" camunda:formRef="Vorsitzbestaetigung" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:documentation>Antrag wird auf fachliche und inhaltliche Mängel geprüft</bpmn:documentation>
       <bpmn:incoming>Flow_07olzfo</bpmn:incoming>
       <bpmn:outgoing>Flow_0au3vkk</bpmn:outgoing>
@@ -146,56 +146,56 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_0boeqvo</bpmn:incoming>
       <bpmn:outgoing>Flow_08eslns</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0zvy7bc" sourceRef="StartEvent_1" targetRef="Activity_08owjke" />
-    <bpmn:sequenceFlow id="Flow_0cx4u8s" sourceRef="Activity_08owjke" targetRef="Gateway_032r4zw" />
-    <bpmn:sequenceFlow id="Flow_0fy7ye0" sourceRef="Gateway_032r4zw" targetRef="Activity_045czg2" />
-    <bpmn:sequenceFlow id="Flow_0ucddk7" sourceRef="Gateway_032r4zw" targetRef="Activity_18jsfd5" />
-    <bpmn:sequenceFlow id="Flow_05wv34x" sourceRef="Activity_045czg2" targetRef="Gateway_1x5jsvv" />
-    <bpmn:sequenceFlow id="Flow_1kx55n0" sourceRef="Activity_18jsfd5" targetRef="Gateway_1x5jsvv" />
-    <bpmn:sequenceFlow id="Flow_197ai74" sourceRef="Activity_102tiai" targetRef="Gateway_1x5jsvv" />
-    <bpmn:sequenceFlow id="Flow_0rdtrht" sourceRef="Gateway_1x5jsvv" targetRef="Gateway_0mg7pap" />
-    <bpmn:sequenceFlow id="Flow_19qf8lq" sourceRef="Activity_17cvpka" targetRef="Gateway_1ebszvd" />
-    <bpmn:sequenceFlow id="Flow_0hdxnbu" name="nein" sourceRef="Gateway_1ebszvd" targetRef="Activity_102tiai">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_1rb6t} = 'false'</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_02765im" name="ja" sourceRef="Gateway_1ebszvd" targetRef="Gateway_1eqic5n">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_1rb6t} = 'true'</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0au3vkk" sourceRef="Activity_1ufm3n1" targetRef="Gateway_15dlx3h" />
-    <bpmn:sequenceFlow id="Flow_1nbv2z0" name="ja" sourceRef="Gateway_15dlx3h" targetRef="Event_0qagy7b">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_kbh28h}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0q60ilg" name="nein" sourceRef="Gateway_15dlx3h" targetRef="Activity_1w8kog5">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_kbh28h}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1dyum7d" sourceRef="Activity_0solifs" targetRef="Gateway_1l03372" />
-    <bpmn:sequenceFlow id="Flow_1pa5rbe" sourceRef="Gateway_10v1of5" targetRef="Gateway_1l03372">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_36lsdf}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1adaf1y" sourceRef="Gateway_1l03372" targetRef="Event_0i0g44d" />
-    <bpmn:sequenceFlow id="Flow_0wbam3w" name="nein" sourceRef="Gateway_1eqic5n" targetRef="Event_0kd5wjc">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_ibuax5}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_09svcwk" sourceRef="Gateway_0mg7pap" targetRef="Activity_08owjke">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_j5nzzg == 'false' || checkbox_hyec5 == 'false'}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_001pbad" name="Beide Bestätigungen liegen vor" sourceRef="Gateway_0mg7pap" targetRef="Activity_17cvpka">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_j5nzzg == 'true' &amp;&amp; checkbox_hyec5 == 'true'}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_07olzfo" name="ja" sourceRef="Gateway_1eqic5n" targetRef="Activity_1ufm3n1">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_ibuax5}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_08eslns" sourceRef="Activity_0l28k72" targetRef="Activity_0solifs" />
-    <bpmn:sequenceFlow id="Flow_0ctocrk" sourceRef="Activity_1w8kog5" targetRef="Gateway_10v1of5" />
-    <bpmn:sequenceFlow id="Flow_0boeqvo" sourceRef="Gateway_10v1of5" targetRef="Activity_0l28k72">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_36lsdf}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="Gateway_0mg7pap">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0rdtrht</bpmn:incoming>
       <bpmn:outgoing>Flow_001pbad</bpmn:outgoing>
       <bpmn:outgoing>Flow_09svcwk</bpmn:outgoing>
     </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0zvy7bc" sourceRef="StartEvent_1" targetRef="Activity_08owjke" />
+    <bpmn:sequenceFlow id="Flow_0cx4u8s" sourceRef="Activity_08owjke" targetRef="Gateway_032r4zw" />
+    <bpmn:sequenceFlow id="Flow_0fy7ye0" sourceRef="Gateway_032r4zw" targetRef="Activity_045czg2" />
+    <bpmn:sequenceFlow id="Flow_0ucddk7" sourceRef="Gateway_032r4zw" targetRef="Activity_18jsfd5" />
+    <bpmn:sequenceFlow id="Flow_05wv34x" sourceRef="Activity_045czg2" targetRef="Gateway_1x5jsvv" />
+    <bpmn:sequenceFlow id="Flow_1kx55n0" sourceRef="Activity_18jsfd5" targetRef="Gateway_1x5jsvv" />
+    <bpmn:sequenceFlow id="Flow_0rdtrht" sourceRef="Gateway_1x5jsvv" targetRef="Gateway_0mg7pap" />
+    <bpmn:sequenceFlow id="Flow_19qf8lq" sourceRef="Activity_17cvpka" targetRef="Gateway_1ebszvd" />
+    <bpmn:sequenceFlow id="Flow_02765im" name="ja" sourceRef="Gateway_1ebszvd" targetRef="Gateway_1eqic5n">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_1rb6t == 'true'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0hdxnbu" name="nein" sourceRef="Gateway_1ebszvd" targetRef="Activity_102tiai">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_1rb6t == 'false'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0au3vkk" sourceRef="Activity_1ufm3n1" targetRef="Gateway_15dlx3h" />
+    <bpmn:sequenceFlow id="Flow_1nbv2z0" name="ja" sourceRef="Gateway_15dlx3h" targetRef="Event_0qagy7b">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_kbh28h }</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0q60ilg" name="nein" sourceRef="Gateway_15dlx3h" targetRef="Activity_1w8kog5">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_kbh28h}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1dyum7d" sourceRef="Activity_0solifs" targetRef="Gateway_1l03372" />
+    <bpmn:sequenceFlow id="Flow_1pa5rbe" sourceRef="Gateway_10v1of5" targetRef="Gateway_1l03372">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_cpqgul}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1adaf1y" sourceRef="Gateway_1l03372" targetRef="Event_0i0g44d" />
+    <bpmn:sequenceFlow id="Flow_0wbam3w" name="nein" sourceRef="Gateway_1eqic5n" targetRef="Event_0kd5wjc">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_kn65t}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_09svcwk" sourceRef="Gateway_0mg7pap" targetRef="Activity_08owjke">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_qpav44 == 'false'  || select_p84w9v == 'false'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_019bo93" sourceRef="Activity_102tiai" targetRef="Activity_08owjke" />
+    <bpmn:sequenceFlow id="Flow_001pbad" name="Beide Bestätigungen liegen vor" sourceRef="Gateway_0mg7pap" targetRef="Activity_17cvpka">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_qpav44 == 'true' &amp;&amp; select_p84w9v == 'true'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_07olzfo" name="ja" sourceRef="Gateway_1eqic5n" targetRef="Activity_1ufm3n1">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_kn65t}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_08eslns" sourceRef="Activity_0l28k72" targetRef="Activity_0solifs" />
+    <bpmn:sequenceFlow id="Flow_0ctocrk" sourceRef="Activity_1w8kog5" targetRef="Gateway_10v1of5" />
+    <bpmn:sequenceFlow id="Flow_0boeqvo" sourceRef="Gateway_10v1of5" targetRef="Activity_0l28k72">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_cpqgul}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17pmjaa">
@@ -286,6 +286,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_16t0syo_di" bpmnElement="Activity_1ufm3n1">
         <dc:Bounds x="2160" y="1135" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1k6ti49_di" bpmnElement="Activity_0solifs">
         <dc:Bounds x="3300" y="1155" width="100" height="80" />
@@ -331,20 +332,14 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_05wv34x_di" bpmnElement="Flow_05wv34x">
         <di:waypoint x="1420" y="535" />
-        <di:waypoint x="1500" y="535" />
-        <di:waypoint x="1500" y="325" />
+        <di:waypoint x="1440" y="535" />
+        <di:waypoint x="1440" y="325" />
         <di:waypoint x="1535" y="325" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1kx55n0_di" bpmnElement="Flow_1kx55n0">
         <di:waypoint x="1420" y="675" />
         <di:waypoint x="1560" y="675" />
         <di:waypoint x="1560" y="350" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_197ai74_di" bpmnElement="Flow_197ai74">
-        <di:waypoint x="2050" y="285" />
-        <di:waypoint x="2050" y="175" />
-        <di:waypoint x="1560" y="175" />
-        <di:waypoint x="1560" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0rdtrht_di" bpmnElement="Flow_0rdtrht">
         <di:waypoint x="1585" y="325" />
@@ -354,20 +349,20 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <di:waypoint x="1800" y="885" />
         <di:waypoint x="1855" y="885" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02765im_di" bpmnElement="Flow_02765im">
+        <di:waypoint x="1880" y="910" />
+        <di:waypoint x="1880" y="945" />
+        <di:waypoint x="2185" y="945" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1891" y="925" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0hdxnbu_di" bpmnElement="Flow_0hdxnbu">
         <di:waypoint x="1905" y="885" />
         <di:waypoint x="2050" y="885" />
         <di:waypoint x="2050" y="365" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1951" y="862" width="21" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_02765im_di" bpmnElement="Flow_02765im">
-        <di:waypoint x="1880" y="910" />
-        <di:waypoint x="1880" y="945" />
-        <di:waypoint x="2185" y="945" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1914" y="948" width="9" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0au3vkk_di" bpmnElement="Flow_0au3vkk">
@@ -415,6 +410,13 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <di:waypoint x="1750" y="135" />
         <di:waypoint x="470" y="135" />
         <di:waypoint x="470" y="285" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_019bo93_di" bpmnElement="Flow_019bo93">
+        <di:waypoint x="2050" y="285" />
+        <di:waypoint x="2050" y="180" />
+        <di:waypoint x="1260" y="180" />
+        <di:waypoint x="1260" y="295" />
+        <di:waypoint x="520" y="295" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_001pbad_di" bpmnElement="Flow_001pbad">
         <di:waypoint x="1750" y="350" />

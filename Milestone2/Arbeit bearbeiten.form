@@ -1,20 +1,14 @@
 {
   "components": [
     {
-      "values": [
-        {
-          "label": "Verlängerung gewünscht",
-          "value": "verlängerung"
-        }
-      ],
-      "label": "",
-      "type": "checklist",
+      "label": "Verlängerung gewünscht",
+      "type": "checkbox",
       "layout": {
-        "row": "Row_0as9ap5",
+        "row": "Row_036ajps",
         "columns": null
       },
-      "id": "Field_0t5y466",
-      "key": "checkbox_36lsdf"
+      "id": "Field_1bmvz2u",
+      "key": "checkbox_cpqgul"
     }
   ],
   "type": "default",
