@@ -22,7 +22,8 @@
         "columns": null
       },
       "id": "Field_1paiogw",
-      "key": "textfield_8kb9wq"
+      "key": "select_hxofn3a",
+      "readonly": true
     },
     {
       "label": "Name Student",
@@ -157,7 +158,9 @@
       },
       "id": "Field_0e2ep84",
       "key": "select_1rb6t",
-      "defaultValue": "true"
+      "defaultValue": "true",
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Informationen Nachreichen",
@@ -170,7 +173,9 @@
       "key": "textarea_dyh4g7",
       "conditional": {
         "hide": "=select_1rb6t = \"true\""
-      }
+      },
+      "readonly": "true",
+      "disabled": true
     }
   ],
   "type": "default",

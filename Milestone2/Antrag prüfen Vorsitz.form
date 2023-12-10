@@ -168,7 +168,9 @@
       },
       "id": "Field_0e2ep84",
       "key": "select_1rb6t",
-      "defaultValue": "true"
+      "defaultValue": "true",
+      "disabled": true,
+      "readonly": true
     },
     {
       "label": "Informationen Nachreichen",
@@ -181,7 +183,9 @@
       "key": "textarea_dyh4g7",
       "conditional": {
         "hide": "=select_1rb6t = \"true\""
-      }
+      },
+      "readonly": true,
+      "disabled": true
     },
     {
       "label": "Fachliche/Inhaltlich korrekt",

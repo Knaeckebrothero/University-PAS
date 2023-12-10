@@ -11,19 +11,21 @@
         <bpmn:flowNodeRef>Gateway_032r4zw</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1x5jsvv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1l03372</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_08owjke</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_102tiai</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0i0g44d</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1w8kog5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_10v1of5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0l28k72</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0mg7pap</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_08owjke</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_087hwdl</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0locvwr" name="Erstbetreuer">
         <bpmn:flowNodeRef>Activity_045czg2</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_17pglki" name="Zweitbetreuer">
         <bpmn:flowNodeRef>Activity_18jsfd5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0os05bt</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0oiy2mq" name="Prüfungsamt">
         <bpmn:flowNodeRef>Gateway_1ebszvd</bpmn:flowNodeRef>
@@ -76,12 +78,6 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
     <bpmn:endEvent id="Event_0qagy7b" name="Antrag abgelehnt">
       <bpmn:incoming>Flow_1nbv2z0</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_08owjke" name="Antrag stellen" camunda:formRef="Antragsstellung" camunda:formRefBinding="latest" camunda:assignee="demo">
-      <bpmn:incoming>Flow_0zvy7bc</bpmn:incoming>
-      <bpmn:incoming>Flow_09svcwk</bpmn:incoming>
-      <bpmn:incoming>Flow_019bo93</bpmn:incoming>
-      <bpmn:outgoing>Flow_0cx4u8s</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:userTask id="Activity_045czg2" name="Arbeit bestätigen" camunda:formRef="Bestaetigungeins" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:documentation>Abschlussarbeit wird bestätigt</bpmn:documentation>
       <bpmn:incoming>Flow_0fy7ye0</bpmn:incoming>
@@ -94,7 +90,7 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_17cvpka" name="Antrag prüfen" camunda:formRef="Antragpruefen" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:documentation>Antrag wird auf Vollständigkeit geprüft</bpmn:documentation>
-      <bpmn:incoming>Flow_001pbad</bpmn:incoming>
+      <bpmn:incoming>Flow_0gbhvt8</bpmn:incoming>
       <bpmn:outgoing>Flow_19qf8lq</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_102tiai" name="Informationen nachreichen" camunda:formRef="Infonachreichen" camunda:formRefBinding="latest" camunda:assignee="demo">
@@ -146,13 +142,13 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_0boeqvo</bpmn:incoming>
       <bpmn:outgoing>Flow_08eslns</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_0mg7pap">
+    <bpmn:exclusiveGateway id="Gateway_0mg7pap" name="Haben beide Betreuer bestätigt?">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0rdtrht</bpmn:incoming>
       <bpmn:outgoing>Flow_001pbad</bpmn:outgoing>
       <bpmn:outgoing>Flow_09svcwk</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0zvy7bc" sourceRef="StartEvent_1" targetRef="Activity_08owjke" />
+    <bpmn:sequenceFlow id="Flow_0zvy7bc" sourceRef="StartEvent_1" targetRef="Gateway_087hwdl" />
     <bpmn:sequenceFlow id="Flow_0cx4u8s" sourceRef="Activity_08owjke" targetRef="Gateway_032r4zw" />
     <bpmn:sequenceFlow id="Flow_0fy7ye0" sourceRef="Gateway_032r4zw" targetRef="Activity_045czg2" />
     <bpmn:sequenceFlow id="Flow_0ucddk7" sourceRef="Gateway_032r4zw" targetRef="Activity_18jsfd5" />
@@ -181,11 +177,11 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     <bpmn:sequenceFlow id="Flow_0wbam3w" name="nein" sourceRef="Gateway_1eqic5n" targetRef="Event_0kd5wjc">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_kn65t}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_09svcwk" sourceRef="Gateway_0mg7pap" targetRef="Activity_08owjke">
+    <bpmn:sequenceFlow id="Flow_09svcwk" name="nein" sourceRef="Gateway_0mg7pap" targetRef="Gateway_087hwdl">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_qpav44 == 'false'  || select_p84w9v == 'false'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_019bo93" sourceRef="Activity_102tiai" targetRef="Activity_08owjke" />
-    <bpmn:sequenceFlow id="Flow_001pbad" name="Beide Bestätigungen liegen vor" sourceRef="Gateway_0mg7pap" targetRef="Activity_17cvpka">
+    <bpmn:sequenceFlow id="Flow_019bo93" sourceRef="Activity_102tiai" targetRef="Gateway_0os05bt" />
+    <bpmn:sequenceFlow id="Flow_001pbad" name="ja" sourceRef="Gateway_0mg7pap" targetRef="Gateway_0os05bt">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_qpav44 == 'true' &amp;&amp; select_p84w9v == 'true'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_07olzfo" name="ja" sourceRef="Gateway_1eqic5n" targetRef="Activity_1ufm3n1">
@@ -196,6 +192,22 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     <bpmn:sequenceFlow id="Flow_0boeqvo" sourceRef="Gateway_10v1of5" targetRef="Activity_0l28k72">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_cpqgul}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
+    <bpmn:userTask id="Activity_08owjke" name="Antrag stellen" camunda:formRef="Antragsstellung" camunda:formRefBinding="latest" camunda:assignee="demo">
+      <bpmn:incoming>Flow_0mrsp7l</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cx4u8s</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_087hwdl">
+      <bpmn:incoming>Flow_0zvy7bc</bpmn:incoming>
+      <bpmn:incoming>Flow_09svcwk</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mrsp7l</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0mrsp7l" sourceRef="Gateway_087hwdl" targetRef="Activity_08owjke" />
+    <bpmn:sequenceFlow id="Flow_0gbhvt8" sourceRef="Gateway_0os05bt" targetRef="Activity_17cvpka" />
+    <bpmn:exclusiveGateway id="Gateway_0os05bt">
+      <bpmn:incoming>Flow_001pbad</bpmn:incoming>
+      <bpmn:incoming>Flow_019bo93</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gbhvt8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17pmjaa">
@@ -203,24 +215,24 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <dc:Bounds x="159" y="65" width="4351" height="1440" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0l625kn_di" bpmnElement="Lane_0l625kn" isHorizontal="true">
-        <dc:Bounds x="189" y="65" width="4321" height="399" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0locvwr_di" bpmnElement="Lane_0locvwr" isHorizontal="true">
-        <dc:Bounds x="189" y="464" width="4321" height="131" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_17pglki_di" bpmnElement="Lane_17pglki" isHorizontal="true">
-        <dc:Bounds x="189" y="595" width="4321" height="180" />
+      <bpmndi:BPMNShape id="Lane_1a3la9o_di" bpmnElement="Lane_1a3la9o" isHorizontal="true">
+        <dc:Bounds x="189" y="1025" width="4321" height="480" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0oiy2mq_di" bpmnElement="Lane_0oiy2mq" isHorizontal="true">
         <dc:Bounds x="189" y="775" width="4321" height="250" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_1a3la9o_di" bpmnElement="Lane_1a3la9o" isHorizontal="true">
-        <dc:Bounds x="189" y="1025" width="4321" height="480" />
+      <bpmndi:BPMNShape id="Lane_17pglki_di" bpmnElement="Lane_17pglki" isHorizontal="true">
+        <dc:Bounds x="189" y="595" width="4321" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0locvwr_di" bpmnElement="Lane_0locvwr" isHorizontal="true">
+        <dc:Bounds x="189" y="464" width="4321" height="131" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0l625kn_di" bpmnElement="Lane_0l625kn" isHorizontal="true">
+        <dc:Bounds x="189" y="65" width="4321" height="399" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
@@ -261,10 +273,6 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <bpmndi:BPMNLabel>
           <dc:Bounds x="2518" y="1370" width="84" height="14" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_08owjke_di" bpmnElement="Activity_08owjke">
-        <dc:Bounds x="420" y="285" width="100" height="80" />
-        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_081g44d_di" bpmnElement="Activity_045czg2">
         <dc:Bounds x="1320" y="495" width="100" height="80" />
@@ -309,15 +317,25 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmndi:BPMNShape id="Gateway_0mg7pap_di" bpmnElement="Gateway_0mg7pap" isMarkerVisible="true">
         <dc:Bounds x="1725" y="300" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1795" y="315" width="71" height="14" />
+          <dc:Bounds x="1658" y="270" width="63" height="40" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08owjke_di" bpmnElement="Activity_08owjke">
+        <dc:Bounds x="530" y="285" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_087hwdl_di" bpmnElement="Gateway_087hwdl" isMarkerVisible="true">
+        <dc:Bounds x="415" y="300" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0os05bt_di" bpmnElement="Gateway_0os05bt" isMarkerVisible="true">
+        <dc:Bounds x="1725" y="675" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0zvy7bc_di" bpmnElement="Flow_0zvy7bc">
         <di:waypoint x="298" y="325" />
-        <di:waypoint x="420" y="325" />
+        <di:waypoint x="415" y="325" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0cx4u8s_di" bpmnElement="Flow_0cx4u8s">
-        <di:waypoint x="520" y="325" />
+        <di:waypoint x="630" y="325" />
         <di:waypoint x="1155" y="325" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0fy7ye0_di" bpmnElement="Flow_0fy7ye0">
@@ -408,21 +426,23 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmndi:BPMNEdge id="Flow_09svcwk_di" bpmnElement="Flow_09svcwk">
         <di:waypoint x="1750" y="300" />
         <di:waypoint x="1750" y="135" />
-        <di:waypoint x="470" y="135" />
-        <di:waypoint x="470" y="285" />
+        <di:waypoint x="440" y="135" />
+        <di:waypoint x="440" y="300" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1759" y="253" width="21" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_019bo93_di" bpmnElement="Flow_019bo93">
-        <di:waypoint x="2050" y="285" />
-        <di:waypoint x="2050" y="180" />
-        <di:waypoint x="1260" y="180" />
-        <di:waypoint x="1260" y="295" />
-        <di:waypoint x="520" y="295" />
+        <di:waypoint x="2000" y="340" />
+        <di:waypoint x="1960" y="340" />
+        <di:waypoint x="1960" y="700" />
+        <di:waypoint x="1775" y="700" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_001pbad_di" bpmnElement="Flow_001pbad">
         <di:waypoint x="1750" y="350" />
-        <di:waypoint x="1750" y="845" />
+        <di:waypoint x="1750" y="675" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1744" y="490" width="71" height="40" />
+          <dc:Bounds x="1756" y="373" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_07olzfo_di" bpmnElement="Flow_07olzfo">
@@ -445,6 +465,14 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <di:waypoint x="3230" y="350" />
         <di:waypoint x="3230" y="385" />
         <di:waypoint x="3380" y="385" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mrsp7l_di" bpmnElement="Flow_0mrsp7l">
+        <di:waypoint x="465" y="325" />
+        <di:waypoint x="530" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gbhvt8_di" bpmnElement="Flow_0gbhvt8">
+        <di:waypoint x="1750" y="725" />
+        <di:waypoint x="1750" y="845" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
