@@ -8,7 +8,7 @@
         "columns": null
       },
       "id": "Field_1kkva03",
-      "key": "textfield_e32re",
+      "key": "studiengang",
       "validate": {
         "required": true
       },
@@ -23,7 +23,7 @@
         "columns": null
       },
       "id": "Field_0wtabu3",
-      "key": "select_hxofn3a",
+      "key": "abschlussart",
       "disabled": true,
       "readonly": true
     },
@@ -35,7 +35,7 @@
         "columns": null
       },
       "id": "Field_05zqiby",
-      "key": "textfield_brlkyb",
+      "key": "student_name",
       "validate": {
         "required": true
       },
@@ -50,7 +50,7 @@
         "columns": null
       },
       "id": "Field_11bxkob",
-      "key": "textfield_vsuzrm",
+      "key": "matrikelnummer",
       "validate": {
         "required": true
       },
@@ -65,7 +65,7 @@
         "columns": null
       },
       "id": "Field_156rmc1",
-      "key": "textfield_b1zw2",
+      "key": "titel",
       "validate": {
         "required": true
       },
@@ -80,7 +80,7 @@
         "columns": null
       },
       "id": "Field_0ytykyv",
-      "key": "textfield_nrqgn9",
+      "key": "erstbetreuer",
       "validate": {
         "required": true
       },
@@ -95,7 +95,7 @@
         "columns": null
       },
       "id": "Field_1cv1i8v",
-      "key": "textfield_2637zl",
+      "key": "zweitbetreuer",
       "validate": {
         "required": true
       },
@@ -110,7 +110,7 @@
         "columns": null
       },
       "id": "Field_1n4fdis",
-      "key": "checkbox_io2fki",
+      "key": "checkbox_englisch",
       "properties": {},
       "readonly": true,
       "disabled": true
@@ -123,7 +123,7 @@
         "columns": null
       },
       "id": "Field_1bg6w6h",
-      "key": "textarea_7qs99",
+      "key": "begruendung_englisch",
       "conditional": {
         "hide": "=checkbox_io2fki = false "
       },
@@ -141,7 +141,7 @@
         "columns": null
       },
       "id": "Field_044h80q",
-      "key": "checkbox_hyec5x",
+      "key": "checkbox_betreuung",
       "validate": {
         "required": false
       },
@@ -167,7 +167,7 @@
         "columns": null
       },
       "id": "Field_0e2ep84",
-      "key": "select_1rb6t",
+      "key": "antrag_vollstaendig_pruefungsamt",
       "defaultValue": "true",
       "disabled": true,
       "readonly": true
@@ -180,9 +180,9 @@
         "columns": null
       },
       "id": "Field_0zt89cs",
-      "key": "textarea_dyh4g7",
+      "key": "infos_nachreichen_pruefungsamt",
       "conditional": {
-        "hide": "=select_1rb6t = \"true\""
+        "hide": "=antrag_vollstaendig_pruefungsamt = \"true\""
       },
       "readonly": true,
       "disabled": true
@@ -195,7 +195,7 @@
         "columns": null
       },
       "id": "Field_0rzq3ny",
-      "key": "checkbox_kbh28h"
+      "key": "checkbox_fachlich_inhaltlich_korrekt"
     }
   ],
   "type": "default",

@@ -8,7 +8,7 @@
         "columns": null
       },
       "id": "Field_1kkva03",
-      "key": "textfield_e32re",
+      "key": "studiengang",
       "validate": {
         "required": false
       }
@@ -31,7 +31,7 @@
         "columns": null
       },
       "id": "Field_0f9lf36",
-      "key": "select_hxofn3a",
+      "key": "abschlussart",
       "defaultValue": "<none>",
       "validate": {
         "required": false
@@ -45,7 +45,7 @@
         "columns": null
       },
       "id": "Field_05zqiby",
-      "key": "textfield_brlkyb",
+      "key": "studentname",
       "validate": {
         "required": false
       }
@@ -58,7 +58,7 @@
         "columns": null
       },
       "id": "Field_11bxkob",
-      "key": "textfield_vsuzrm",
+      "key": "matrikelnummer",
       "validate": {
         "required": false
       }
@@ -71,36 +71,74 @@
         "columns": null
       },
       "id": "Field_156rmc1",
-      "key": "textfield_b1zw2",
+      "key": "titel",
       "validate": {
         "required": false
       }
     },
     {
+      "values": [
+        {
+          "label": "Bremm",
+          "value": "Bremm"
+        },
+        {
+          "label": "Rich",
+          "value": "Rich"
+        },
+        {
+          "label": "Hefter",
+          "value": "Hefter"
+        },
+        {
+          "label": "Jung",
+          "value": "Jung"
+        },
+        {
+          "label": "Trost",
+          "value": "Trost"
+        }
+      ],
       "label": "Erstbetreuer",
-      "type": "textfield",
+      "type": "select",
       "layout": {
-        "row": "Row_10imb0b",
+        "row": "Row_198ityu",
         "columns": null
       },
-      "id": "Field_0ytykyv",
-      "key": "textfield_nrqgn9",
-      "validate": {
-        "required": false
-      }
+      "id": "Field_02vrkmn",
+      "key": "erstbetreuer"
     },
     {
+      "values": [
+        {
+          "label": "Bremm",
+          "value": "Bremm"
+        },
+        {
+          "label": "Rich",
+          "value": "Rich"
+        },
+        {
+          "label": "Hefter ",
+          "value": "Hefter"
+        },
+        {
+          "label": "Jung ",
+          "value": "Jung"
+        },
+        {
+          "label": "Trost",
+          "value": "Trost"
+        }
+      ],
       "label": "Zweitbetreuer",
-      "type": "textfield",
+      "type": "select",
       "layout": {
-        "row": "Row_0bd5iig",
+        "row": "Row_0w5wdr8",
         "columns": null
       },
-      "id": "Field_1cv1i8v",
-      "key": "textfield_2637zl",
-      "validate": {
-        "required": false
-      }
+      "id": "Field_15fb7uk",
+      "key": "zweitbetreuer"
     },
     {
       "label": "Arbeit auf Englisch",
@@ -110,7 +148,7 @@
         "columns": null
       },
       "id": "Field_1n4fdis",
-      "key": "checkbox_io2fki",
+      "key": "checkbox_englisch",
       "properties": {}
     },
     {
@@ -121,9 +159,9 @@
         "columns": null
       },
       "id": "Field_1bg6w6h",
-      "key": "textarea_7qs99",
+      "key": "begruendung_englisch",
       "conditional": {
-        "hide": "=checkbox_io2fki = false "
+        "hide": "=checkbox_englisch = false "
       },
       "validate": {
         "required": true

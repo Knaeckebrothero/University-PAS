@@ -48,7 +48,7 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
       <bpmn:outgoing>Flow_0zvy7bc</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:parallelGateway id="Gateway_032r4zw">
-      <bpmn:incoming>Flow_0cx4u8s</bpmn:incoming>
+      <bpmn:incoming>Flow_0eeryav</bpmn:incoming>
       <bpmn:outgoing>Flow_0fy7ye0</bpmn:outgoing>
       <bpmn:outgoing>Flow_0ucddk7</bpmn:outgoing>
     </bpmn:parallelGateway>
@@ -149,7 +149,6 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:outgoing>Flow_09svcwk</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0zvy7bc" sourceRef="StartEvent_1" targetRef="Gateway_087hwdl" />
-    <bpmn:sequenceFlow id="Flow_0cx4u8s" sourceRef="Activity_08owjke" targetRef="Gateway_032r4zw" />
     <bpmn:sequenceFlow id="Flow_0fy7ye0" sourceRef="Gateway_032r4zw" targetRef="Activity_045czg2" />
     <bpmn:sequenceFlow id="Flow_0ucddk7" sourceRef="Gateway_032r4zw" targetRef="Activity_18jsfd5" />
     <bpmn:sequenceFlow id="Flow_05wv34x" sourceRef="Activity_045czg2" targetRef="Gateway_1x5jsvv" />
@@ -157,44 +156,44 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     <bpmn:sequenceFlow id="Flow_0rdtrht" sourceRef="Gateway_1x5jsvv" targetRef="Gateway_0mg7pap" />
     <bpmn:sequenceFlow id="Flow_19qf8lq" sourceRef="Activity_17cvpka" targetRef="Gateway_1ebszvd" />
     <bpmn:sequenceFlow id="Flow_02765im" name="ja" sourceRef="Gateway_1ebszvd" targetRef="Gateway_1eqic5n">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_1rb6t == 'true'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${antrag_vollstaendig_pruefungsamt == 'true'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0hdxnbu" name="nein" sourceRef="Gateway_1ebszvd" targetRef="Activity_102tiai">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_1rb6t == 'false'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${antrag_vollstaendig_pruefungsamt == 'false'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0au3vkk" sourceRef="Activity_1ufm3n1" targetRef="Gateway_15dlx3h" />
     <bpmn:sequenceFlow id="Flow_1nbv2z0" name="ja" sourceRef="Gateway_15dlx3h" targetRef="Event_0qagy7b">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_kbh28h }</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_fachlich_inhaltlich_korrekt }</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0q60ilg" name="nein" sourceRef="Gateway_15dlx3h" targetRef="Activity_1w8kog5">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_kbh28h}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_fachlich_inhaltlich_korrekt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1dyum7d" sourceRef="Activity_0solifs" targetRef="Gateway_1l03372" />
     <bpmn:sequenceFlow id="Flow_1pa5rbe" sourceRef="Gateway_10v1of5" targetRef="Gateway_1l03372">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_cpqgul}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_verlaengerung_gewuenscht}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1adaf1y" sourceRef="Gateway_1l03372" targetRef="Event_0i0g44d" />
     <bpmn:sequenceFlow id="Flow_0wbam3w" name="nein" sourceRef="Gateway_1eqic5n" targetRef="Event_0kd5wjc">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_kn65t}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_vorraussetzung_erfuellt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_09svcwk" name="nein" sourceRef="Gateway_0mg7pap" targetRef="Gateway_087hwdl">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_qpav44 == 'false'  || select_p84w9v == 'false'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${betreuung1 == 'false'  || betreuung2 == 'false'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_019bo93" sourceRef="Activity_102tiai" targetRef="Gateway_0os05bt" />
     <bpmn:sequenceFlow id="Flow_001pbad" name="ja" sourceRef="Gateway_0mg7pap" targetRef="Gateway_0os05bt">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${select_qpav44 == 'true' &amp;&amp; select_p84w9v == 'true'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${betreuung1 == 'true' &amp;&amp; betreuung2 == 'true'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_07olzfo" name="ja" sourceRef="Gateway_1eqic5n" targetRef="Activity_1ufm3n1">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_kn65t}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_vorraussetzung_erfuellt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_08eslns" sourceRef="Activity_0l28k72" targetRef="Activity_0solifs" />
     <bpmn:sequenceFlow id="Flow_0ctocrk" sourceRef="Activity_1w8kog5" targetRef="Gateway_10v1of5" />
     <bpmn:sequenceFlow id="Flow_0boeqvo" sourceRef="Gateway_10v1of5" targetRef="Activity_0l28k72">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_cpqgul}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_verlaengerung_gewuenscht}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:userTask id="Activity_08owjke" name="Antrag stellen" camunda:formRef="Antragsstellung" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:incoming>Flow_0mrsp7l</bpmn:incoming>
-      <bpmn:outgoing>Flow_0cx4u8s</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0eeryav</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_087hwdl">
       <bpmn:incoming>Flow_0zvy7bc</bpmn:incoming>
@@ -208,6 +207,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_019bo93</bpmn:incoming>
       <bpmn:outgoing>Flow_0gbhvt8</bpmn:outgoing>
     </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0eeryav" sourceRef="Activity_08owjke" targetRef="Gateway_032r4zw" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17pmjaa">
@@ -334,10 +334,6 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <di:waypoint x="298" y="325" />
         <di:waypoint x="415" y="325" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0cx4u8s_di" bpmnElement="Flow_0cx4u8s">
-        <di:waypoint x="630" y="325" />
-        <di:waypoint x="1155" y="325" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0fy7ye0_di" bpmnElement="Flow_0fy7ye0">
         <di:waypoint x="1180" y="350" />
         <di:waypoint x="1180" y="535" />
@@ -442,7 +438,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <di:waypoint x="1750" y="350" />
         <di:waypoint x="1750" y="675" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1756" y="373" width="8" height="14" />
+          <dc:Bounds x="1756" y="373" width="9" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_07olzfo_di" bpmnElement="Flow_07olzfo">
@@ -473,6 +469,10 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmndi:BPMNEdge id="Flow_0gbhvt8_di" bpmnElement="Flow_0gbhvt8">
         <di:waypoint x="1750" y="725" />
         <di:waypoint x="1750" y="845" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0eeryav_di" bpmnElement="Flow_0eeryav">
+        <di:waypoint x="630" y="325" />
+        <di:waypoint x="1155" y="325" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

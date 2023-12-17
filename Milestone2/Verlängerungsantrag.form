@@ -18,7 +18,7 @@
         "columns": null
       },
       "id": "Field_1rm4ksk",
-      "key": "select_mfedse",
+      "key": "grund_verlaengerung",
       "defaultValue": "<none>"
     },
     {
@@ -29,9 +29,9 @@
         "columns": null
       },
       "id": "Field_19qwjgh",
-      "key": "textarea_ai0f6",
+      "key": "krankheit_begruendung",
       "conditional": {
-        "hide": "=select_mfedse != \"krank\""
+        "hide": "=grund_verlaengerung != \"krank\""
       }
     },
     {
@@ -42,9 +42,9 @@
         "columns": null
       },
       "id": "Field_0t382h9",
-      "key": "textarea_ubmir",
+      "key": "extern_begruendung",
       "conditional": {
-        "hide": "=select_mfedse != \"extern\""
+        "hide": "=grund_verlaengerung != \"extern\""
       }
     }
   ],

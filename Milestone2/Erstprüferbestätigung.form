@@ -8,7 +8,7 @@
         "columns": null
       },
       "id": "Field_1kkva03",
-      "key": "textfield_e32re",
+      "key": "studiengang",
       "validate": {
         "required": true
       },
@@ -23,7 +23,7 @@
         "columns": null
       },
       "id": "Field_1glib51",
-      "key": "select_hxofn3a",
+      "key": "abschlussart",
       "readonly": true,
       "disabled": true
     },
@@ -35,7 +35,7 @@
         "columns": null
       },
       "id": "Field_05zqiby",
-      "key": "textfield_brlkyb",
+      "key": "student_name",
       "validate": {
         "required": true
       },
@@ -50,7 +50,7 @@
         "columns": null
       },
       "id": "Field_11bxkob",
-      "key": "textfield_vsuzrm",
+      "key": "matrikelnummer",
       "validate": {
         "required": true
       },
@@ -65,7 +65,7 @@
         "columns": null
       },
       "id": "Field_156rmc1",
-      "key": "textfield_b1zw2",
+      "key": "titel",
       "validate": {
         "required": true
       },
@@ -80,7 +80,7 @@
         "columns": null
       },
       "id": "Field_0ytykyv",
-      "key": "textfield_nrqgn9",
+      "key": "erstbetreuer",
       "validate": {
         "required": true
       },
@@ -95,7 +95,7 @@
         "columns": null
       },
       "id": "Field_1cv1i8v",
-      "key": "textfield_2637zl",
+      "key": "zweitbetreuer",
       "validate": {
         "required": true
       },
@@ -110,7 +110,7 @@
         "columns": null
       },
       "id": "Field_1n4fdis",
-      "key": "checkbox_io2fki",
+      "key": "checkbox_englisch",
       "properties": {},
       "readonly": true,
       "disabled": true
@@ -123,9 +123,9 @@
         "columns": null
       },
       "id": "Field_1bg6w6h",
-      "key": "textarea_7qs99",
+      "key": "begruendung_englisch",
       "conditional": {
-        "hide": "=checkbox_io2fki = false "
+        "hide": "=checkboxenglisch = false "
       },
       "validate": {
         "required": true
@@ -151,7 +151,7 @@
         "columns": null
       },
       "id": "Field_1ou3ti5",
-      "key": "select_qpav44"
+      "key": "betreuung1"
     }
   ],
   "type": "default",

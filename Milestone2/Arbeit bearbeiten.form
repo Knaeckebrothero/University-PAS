@@ -1,14 +1,45 @@
 {
   "components": [
     {
+      "label": "Master Bearbeitungszeiten",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_08evfqn",
+        "columns": null
+      },
+      "id": "Field_1e1mfkb",
+      "key": "master_bearbeitungszeit",
+      "conditional": {
+        "hide": "=abschlussart = \"Bachelor\""
+      },
+      "disabled": true,
+      "readonly": true
+    },
+    {
+      "label": "Bachelor Bearbeitungszeit",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0lvxrx4",
+        "columns": null
+      },
+      "id": "Field_1elv6zj",
+      "key": "bachelor_bearbeitungszeit",
+      "conditional": {
+        "hide": "=abschlussart = \"Master\""
+      },
+      "defaultValue": "9 Wochen",
+      "disabled": true,
+      "readonly": true
+    },
+    {
       "label": "Verlängerung gewünscht",
       "type": "checkbox",
       "layout": {
-        "row": "Row_036ajps",
+        "row": null,
         "columns": null
       },
       "id": "Field_1bmvz2u",
-      "key": "checkbox_cpqgul"
+      "key": "checkbox_verlaengerung_gewuenscht"
     }
   ],
   "type": "default",
