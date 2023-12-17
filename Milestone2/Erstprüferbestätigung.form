@@ -125,7 +125,7 @@
       "id": "Field_1bg6w6h",
       "key": "begruendung_englisch",
       "conditional": {
-        "hide": "=checkboxenglisch = false "
+        "hide": "=checkbox_englisch = false "
       },
       "validate": {
         "required": true
