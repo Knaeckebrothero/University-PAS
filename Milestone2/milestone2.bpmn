@@ -110,6 +110,7 @@ Master (4 Sem.) mind. 80 ECTS</bpmn:documentation>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_0solifs" name="Verlängerung prüfen" camunda:formRef="Verlaengerungsantragspruefung" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:documentation>Antrag wird auf Validität geprüft</bpmn:documentation>
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_08eslns</bpmn:incoming>
       <bpmn:outgoing>Flow_1dyum7d</bpmn:outgoing>
     </bpmn:userTask>

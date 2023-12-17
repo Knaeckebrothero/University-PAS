@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "label": "Master Bearbeitungszeiten",
+      "label": "Master Bearbeitungszeit",
       "type": "textfield",
       "layout": {
         "row": "Row_08evfqn",
@@ -13,7 +13,8 @@
         "hide": "=abschlussart = \"Bachelor\""
       },
       "disabled": true,
-      "readonly": true
+      "readonly": true,
+      "defaultValue": "22 Wochen"
     },
     {
       "label": "Bachelor Bearbeitungszeit",
@@ -35,7 +36,7 @@
       "label": "Verlängerung gewünscht",
       "type": "checkbox",
       "layout": {
-        "row": null,
+        "row": "Row_1j937wk",
         "columns": null
       },
       "id": "Field_1bmvz2u",
