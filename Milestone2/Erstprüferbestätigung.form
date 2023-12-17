@@ -10,7 +10,7 @@
       "id": "Field_1kkva03",
       "key": "studiengang",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": true,
       "disabled": true
@@ -28,6 +28,33 @@
       "disabled": true
     },
     {
+      "label": "ECTS",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1t75cpb",
+        "columns": null
+      },
+      "id": "Field_1vg42rv",
+      "key": "ECTS",
+      "disabled": true,
+      "readonly": true
+    },
+    {
+      "label": "Semster",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1t75cpb",
+        "columns": null
+      },
+      "id": "Field_18kssla",
+      "key": "semester",
+      "readonly": true,
+      "disabled": true,
+      "conditional": {
+        "hide": "=abschlussart != \"Master\" "
+      }
+    },
+    {
       "label": "Name Student",
       "type": "textfield",
       "layout": {
@@ -37,7 +64,7 @@
       "id": "Field_05zqiby",
       "key": "student_name",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": true,
       "disabled": true
@@ -52,7 +79,7 @@
       "id": "Field_11bxkob",
       "key": "matrikelnummer",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": true,
       "disabled": true
@@ -82,7 +109,7 @@
       "id": "Field_0ytykyv",
       "key": "erstbetreuer",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": true,
       "disabled": true
@@ -97,7 +124,7 @@
       "id": "Field_1cv1i8v",
       "key": "zweitbetreuer",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": true,
       "disabled": true
@@ -128,7 +155,7 @@
         "hide": "=checkbox_englisch = false "
       },
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": true,
       "disabled": true
@@ -151,7 +178,10 @@
         "columns": null
       },
       "id": "Field_1ou3ti5",
-      "key": "betreuung1"
+      "key": "betreuung1",
+      "validate": {
+        "required": true
+      }
     }
   ],
   "type": "default",

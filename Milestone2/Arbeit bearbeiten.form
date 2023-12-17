@@ -14,7 +14,8 @@
       },
       "disabled": true,
       "readonly": true,
-      "defaultValue": "22 Wochen"
+      "defaultValue": "22 Wochen",
+      "properties": {}
     },
     {
       "label": "Bachelor Bearbeitungszeit",

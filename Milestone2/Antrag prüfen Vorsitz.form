@@ -28,6 +28,33 @@
       "readonly": true
     },
     {
+      "label": "ECTS",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1t75cpb",
+        "columns": null
+      },
+      "id": "Field_1oji7u4",
+      "key": "ECTS",
+      "disabled": true,
+      "readonly": true
+    },
+    {
+      "label": "Semester",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1t75cpb",
+        "columns": null
+      },
+      "id": "Field_1sljq0c",
+      "key": "semester",
+      "conditional": {
+        "hide": "=abschlussart != \"Master\" "
+      },
+      "disabled": true,
+      "readonly": true
+    },
+    {
       "label": "Name Student",
       "type": "textfield",
       "layout": {
