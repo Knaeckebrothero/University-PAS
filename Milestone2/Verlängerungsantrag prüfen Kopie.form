@@ -54,6 +54,18 @@
       "validate": {
         "required": false
       }
+    },
+    {
+      "label": "Neues Abgabedatum",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ql1842",
+        "columns": null
+      },
+      "id": "Field_0r2z1bt",
+      "key": "abgabe_datum",
+      "disabled": false,
+      "readonly": false
     }
   ],
   "type": "default",

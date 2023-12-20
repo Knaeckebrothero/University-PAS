@@ -223,6 +223,16 @@
       },
       "id": "Field_0rzq3ny",
       "key": "checkbox_fachlich_inhaltlich_korrekt"
+    },
+    {
+      "label": "Abgabedatum",
+      "type": "textfield",
+      "layout": {
+        "row": null,
+        "columns": null
+      },
+      "id": "Field_0n3hjry",
+      "key": "abgabe_datum"
     }
   ],
   "type": "default",
