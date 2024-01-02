@@ -9,7 +9,7 @@
       <bpmn:lane id="Lane_1a3la9o" name="Vorsitzender">
         <bpmn:flowNodeRef>Gateway_15dlx3h</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0qagy7b</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1ufm3n1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>angaben_pruefen_vorsitzender</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>verlaengerung_pruefen</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0oiy2mq" name="Prüfungsamt">
@@ -95,7 +95,7 @@
       <bpmn:outgoing>Flow_07olzfo</bpmn:outgoing>
       <bpmn:outgoing>Flow_0wbam3w</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_1ufm3n1" name="Angaben überprüfen" camunda:formRef="Vorsitzbestaetigung" camunda:formRefBinding="latest" camunda:assignee="vorsitzenderpas">
+    <bpmn:userTask id="angaben_pruefen_vorsitzender" name="Angaben überprüfen" camunda:formRef="Vorsitzbestaetigung" camunda:formRefBinding="latest" camunda:assignee="vorsitzenderpas">
       <bpmn:documentation>Der Antrag wird auf fachliche und inhaltliche Mängel durch den Vorsitz geprüft.</bpmn:documentation>
       <bpmn:incoming>Flow_07olzfo</bpmn:incoming>
       <bpmn:outgoing>Flow_0au3vkk</bpmn:outgoing>
@@ -202,7 +202,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     <bpmn:sequenceFlow id="Flow_0hdxnbu" name="nein" sourceRef="Gateway_1ebszvd" targetRef="pruefungsamtpas">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${antrag_vollstaendig_pruefungsamt == 'false'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0au3vkk" sourceRef="Activity_1ufm3n1" targetRef="Gateway_15dlx3h" />
+    <bpmn:sequenceFlow id="Flow_0au3vkk" sourceRef="angaben_pruefen_vorsitzender" targetRef="Gateway_15dlx3h" />
     <bpmn:sequenceFlow id="Flow_1nbv2z0" name="ja" sourceRef="Gateway_15dlx3h" targetRef="Event_0qagy7b">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!checkbox_fachlich_inhaltlich_korrekt }</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -214,7 +214,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0gbhvt8" sourceRef="Gateway_0os05bt" targetRef="antrag_pruefen_amt" />
     <bpmn:sequenceFlow id="Flow_019bo93" sourceRef="pruefungsamtpas" targetRef="Gateway_0os05bt" />
-    <bpmn:sequenceFlow id="Flow_07olzfo" name="ja" sourceRef="Gateway_1eqic5n" targetRef="Activity_1ufm3n1">
+    <bpmn:sequenceFlow id="Flow_07olzfo" name="ja" sourceRef="Gateway_1eqic5n" targetRef="angaben_pruefen_vorsitzender">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_vorraussetzung_erfuellt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_09svcwk" name="nein" sourceRef="Gateway_0mg7pap" targetRef="Gateway_087hwdl">
@@ -324,7 +324,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
           <dc:Bounds x="2167" y="855" width="86" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_16t0syo_di" bpmnElement="Activity_1ufm3n1">
+      <bpmndi:BPMNShape id="Activity_16t0syo_di" bpmnElement="angaben_pruefen_vorsitzender">
         <dc:Bounds x="2160" y="1120" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
