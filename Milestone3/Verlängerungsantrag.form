@@ -1,0 +1,60 @@
+{
+  "components": [
+    {
+      "values": [
+        {
+          "label": "Krankheit",
+          "value": "krank"
+        },
+        {
+          "label": "Extern",
+          "value": "extern"
+        }
+      ],
+      "label": "Grund",
+      "type": "select",
+      "layout": {
+        "row": "Row_02nd6w8",
+        "columns": null
+      },
+      "id": "Field_1rm4ksk",
+      "key": "grund_verlaengerung",
+      "defaultValue": "<none>"
+    },
+    {
+      "label": "Krankheit",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0r2e9q8",
+        "columns": null
+      },
+      "id": "Field_19qwjgh",
+      "key": "krankheit_begruendung",
+      "conditional": {
+        "hide": "=grund_verlaengerung != \"krank\""
+      }
+    },
+    {
+      "label": "Extern",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0rlvsf9",
+        "columns": null
+      },
+      "id": "Field_0t382h9",
+      "key": "extern_begruendung",
+      "conditional": {
+        "hide": "=grund_verlaengerung != \"extern\""
+      }
+    }
+  ],
+  "type": "default",
+  "id": "Verlaengerungsantrag",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.16.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 11
+}
