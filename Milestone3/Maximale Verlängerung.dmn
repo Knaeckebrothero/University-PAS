@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0zr6ahk" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.16.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
-  <decision id="neues_datum" name="Maximale Verlängerung der Abschlussarbeit" camunda:historyTimeToLive="0">
+  <decision id="maximale_verlaengerung" name="Maximale Verlängerung der Abschlussarbeit" camunda:historyTimeToLive="0">
     <decisionTable id="DecisionTable_15a9r7d">
       <input id="Input_1" label="Abschlussart" camunda:inputVariable="abschlussart">
         <inputExpression id="InputExpression_1" typeRef="string">
@@ -36,7 +36,7 @@
   </decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
-      <dmndi:DMNShape dmnElementRef="neues_datum">
+      <dmndi:DMNShape dmnElementRef="maximale_verlaengerung">
         <dc:Bounds height="80" width="180" x="160" y="100" />
       </dmndi:DMNShape>
     </dmndi:DMNDiagram>

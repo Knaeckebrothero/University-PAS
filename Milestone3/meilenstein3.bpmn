@@ -237,12 +237,12 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     <bpmn:sequenceFlow id="Flow_0obkkyo" sourceRef="Gateway_0zeukux" targetRef="Gateway_032r4zw">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${voraussetzungerfueellt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:businessRuleTask id="Abgabedatum_festelgen" name="Abgabedatum festlegen" camunda:resultVariable="Bearbeitungszeit" camunda:decisionRef="abgabe_berechnen" camunda:mapDecisionResult="singleEntry">
+    <bpmn:businessRuleTask id="Abgabedatum_festelgen" name="Bearbeitungs-&#10;dauer festlegen" camunda:resultVariable="Bearbeitungszeit" camunda:decisionRef="bearbeitungsdauer_festlegen" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>Flow_0q60ilg</bpmn:incoming>
       <bpmn:outgoing>Flow_0vfyt83</bpmn:outgoing>
     </bpmn:businessRuleTask>
     <bpmn:sequenceFlow id="Flow_0vfyt83" sourceRef="Abgabedatum_festelgen" targetRef="Gateway_0l42j6b" />
-    <bpmn:businessRuleTask id="Neues_Abgabedatum" name="Verlängertes Abgabedatum berechnen" camunda:decisionRef="neues_datum">
+    <bpmn:businessRuleTask id="Neues_Abgabedatum" name="Maximale Verlängerungsdauer" camunda:decisionRef="maximale_verlaengerung">
       <bpmn:incoming>Flow_1u737pm</bpmn:incoming>
       <bpmn:outgoing>Flow_1q1mi69</bpmn:outgoing>
     </bpmn:businessRuleTask>
@@ -585,14 +585,14 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <di:waypoint x="630" y="310" />
         <di:waypoint x="780" y="310" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0twe69n_di" bpmnElement="Flow_0twe69n">
+        <di:waypoint x="880" y="310" />
+        <di:waypoint x="935" y="310" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1xhgnqd_di" bpmnElement="Flow_1xhgnqd">
         <di:waypoint x="960" y="285" />
         <di:waypoint x="960" y="190" />
         <di:waypoint x="650" y="190" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0twe69n_di" bpmnElement="Flow_0twe69n">
-        <di:waypoint x="880" y="310" />
-        <di:waypoint x="935" y="310" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0obkkyo_di" bpmnElement="Flow_0obkkyo">
         <di:waypoint x="985" y="310" />

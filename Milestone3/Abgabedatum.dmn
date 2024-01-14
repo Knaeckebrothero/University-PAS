@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_0ofhh6z" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.16.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
-  <decision id="abgabe_berechnen" name="Abgabedatum berechnen" camunda:historyTimeToLive="0">
+  <decision id="bearbeitungsdauer_festlegen" name="Bearbeitungsdauer festlegen" camunda:historyTimeToLive="0">
     <decisionTable id="DecisionTable_1aiyuit">
       <input id="Input_1" label="Abschlussart" camunda:inputVariable="abschlussart">
         <inputExpression id="InputExpression_1" typeRef="string">
@@ -42,7 +42,7 @@
   </decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
-      <dmndi:DMNShape dmnElementRef="abgabe_berechnen">
+      <dmndi:DMNShape dmnElementRef="bearbeitungsdauer_festlegen">
         <dc:Bounds height="80" width="180" x="160" y="100" />
       </dmndi:DMNShape>
     </dmndi:DMNDiagram>
