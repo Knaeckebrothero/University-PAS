@@ -13,6 +13,9 @@ public class HelloWorldDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) {
+        System.out.println("Vor änderung: " + execution.getVariable("test_task"));
+        execution.setVariable("test_task", false);
+        System.out.println("Nach änderung: " + execution.getVariable("test_task"));
         helloWorldService.sayHello();
     }
 }

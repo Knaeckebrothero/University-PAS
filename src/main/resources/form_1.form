@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "Test Java",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0dhsqn0",
+        "columns": null
+      },
+      "id": "Field_0ij1boh",
+      "key": "test_task"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1xazgcy",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.16.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 11
+}
