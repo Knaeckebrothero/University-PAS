@@ -43,6 +43,29 @@
       "disabled": true
     },
     {
+      "label": "Verfügbare Tage",
+      "type": "number",
+      "layout": {
+        "row": "Row_1jb3z26",
+        "columns": null
+      },
+      "id": "Field_0v60145",
+      "key": "preview_anzahl_verlaengerung",
+      "disabled": true,
+      "readonly": true
+    },
+    {
+      "label": "Genehmigte Tage",
+      "type": "number",
+      "layout": {
+        "row": "Row_1jb3z26",
+        "columns": null
+      },
+      "id": "Field_1hm9we2",
+      "key": "anzahl_verlaengerung",
+      "defaultValue": 0
+    },
+    {
       "label": "Antrag valide",
       "type": "checkbox",
       "layout": {
@@ -54,18 +77,6 @@
       "validate": {
         "required": false
       }
-    },
-    {
-      "label": "Neues Abgabedatum",
-      "type": "textfield",
-      "layout": {
-        "row": "Row_1ql1842",
-        "columns": null
-      },
-      "id": "Field_0r2z1bt",
-      "key": "abgabe_datum",
-      "disabled": false,
-      "readonly": false
     }
   ],
   "type": "default",
