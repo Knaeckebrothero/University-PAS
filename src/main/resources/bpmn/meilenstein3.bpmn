@@ -2,9 +2,9 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0j4cxsz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.16.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
   <bpmn:collaboration id="Collaboration_17pmjaa">
     <bpmn:documentation>Sind fachliche oder inhaltliche Mängel vorhanden?</bpmn:documentation>
-    <bpmn:participant id="Participant_1mpgl5i" name="Frankfurt UAS" processRef="Process_13yfkyo" />
+    <bpmn:participant id="Participant_1mpgl5i" name="Frankfurt UAS" processRef="Abschlussarbeit" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_13yfkyo" isExecutable="true" camunda:historyTimeToLive="180">
+  <bpmn:process id="Abschlussarbeit" isExecutable="true" camunda:historyTimeToLive="180">
     <bpmn:laneSet id="LaneSet_1rw1xdk">
       <bpmn:lane id="Lane_1a3la9o" name="Vorsitzender">
         <bpmn:flowNodeRef>Gateway_15dlx3h</bpmn:flowNodeRef>
@@ -50,8 +50,8 @@
         <bpmn:flowNodeRef>verlaengerung_beantragen</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>abgabe_timer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>nicht_bestanden_zeit_ueberschritten</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0jy8jcc</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>abgabe_timer_meldung</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0jy8jcc</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="Start_Event" name="Anmeldung der Abschlussarbeit">
@@ -282,11 +282,6 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     <bpmn:endEvent id="nicht_bestanden_zeit_ueberschritten" name="Arbeit nicht bestanden">
       <bpmn:incoming>Flow_1n3bqp1</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:task id="Activity_0jy8jcc" name="Student Informieren">
-      <bpmn:documentation>Falls der Studierende die ECTS vorgaben nicht erfüllt oder bei der Eingabe einen Fehler gemacht hat, bekommt er eine Fehlermeldung. Daraufhin sollte er seine Eingaben prüfen oder sich erst Anmelden, wenn die nötigen ECTS für die Anmeldung einer Arbeit vorhanden sind. </bpmn:documentation>
-      <bpmn:incoming>Flow_1xhgnqd</bpmn:incoming>
-      <bpmn:outgoing>Flow_07r3tin</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:task id="Activity_06h89t1" name="Student Informieren">
       <bpmn:incoming>Flow_0hdxnbu</bpmn:incoming>
       <bpmn:outgoing>Flow_0csl5tn</bpmn:outgoing>
@@ -308,6 +303,11 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_1h26hw5</bpmn:incoming>
       <bpmn:outgoing>Flow_0v3ow8p</bpmn:outgoing>
     </bpmn:task>
+    <bpmn:serviceTask id="Activity_0jy8jcc" name="Student Informieren" camunda:class="fra.uas.pas.delegate.EmailDelegate">
+      <bpmn:documentation>Falls der Studierende die ECTS vorgaben nicht erfüllt oder bei der Eingabe einen Fehler gemacht hat, bekommt er eine Fehlermeldung. Daraufhin sollte er seine Eingaben prüfen oder sich erst Anmelden, wenn die nötigen ECTS für die Anmeldung einer Arbeit vorhanden sind. </bpmn:documentation>
+      <bpmn:incoming>Flow_1xhgnqd</bpmn:incoming>
+      <bpmn:outgoing>Flow_07r3tin</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17pmjaa">
@@ -463,9 +463,6 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
           <dc:Bounds x="3342" y="66" width="55" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_06fd77y_di" bpmnElement="Activity_0jy8jcc">
-        <dc:Bounds x="780" y="160" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0gykbia_di" bpmnElement="Activity_06h89t1">
         <dc:Bounds x="2050" y="830" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -480,6 +477,9 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_04kh30c_di" bpmnElement="verlaengerung_berechen">
         <dc:Bounds x="3500" y="900" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0soislm_di" bpmnElement="Activity_0jy8jcc">
+        <dc:Bounds x="780" y="160" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0fjpd6o_di" bpmnElement="abgabe_timer">
         <dc:Bounds x="3062" y="172" width="36" height="36" />
