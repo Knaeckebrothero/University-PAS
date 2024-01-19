@@ -12,18 +12,16 @@ public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    //String to, String subject, String text
-    public void sendSimpleMessage() {
+    // Method to send email
+    public void sendSimpleMessage(String recipient, String subject, String content) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("noreply@example.com");
-            message.setTo("");
-            message.setSubject("TestSpringMail");
-            message.setText("This is a test message.");
+            message.setTo(recipient);
+            message.setSubject(subject);
+            message.setText(content);
            emailSender.send(message);
         } catch (MailException exception) {
             exception.printStackTrace();
-            // Handle the exception accordingly
         }
     }
 }

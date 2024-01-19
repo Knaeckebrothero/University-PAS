@@ -20,9 +20,9 @@
         <bpmn:flowNodeRef>antrag_pruefen_amt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1eqic5n</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Neues_Abgabedatum</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_06h89t1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>abgabedatum_anpassen</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>verlaengerung_berechen</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>mail_informationen</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_17pglki" name="Erstbetreuer">
         <bpmn:flowNodeRef>Gateway_0os05bt</bpmn:flowNodeRef>
@@ -50,8 +50,8 @@
         <bpmn:flowNodeRef>verlaengerung_beantragen</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>abgabe_timer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>nicht_bestanden_zeit_ueberschritten</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>abgabe_timer_meldung</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0jy8jcc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>mail_ects</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>mail_abgabe</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="Start_Event" name="Anmeldung der Abschlussarbeit">
@@ -131,7 +131,7 @@
     <bpmn:sequenceFlow id="Flow_02765im" name="ja" sourceRef="Gateway_1ebszvd" targetRef="Gateway_1eqic5n">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${antrag_vollstaendig_pruefungsamt == 'true'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0hdxnbu" name="nein" sourceRef="Gateway_1ebszvd" targetRef="Activity_06h89t1">
+    <bpmn:sequenceFlow id="Flow_0hdxnbu" name="nein" sourceRef="Gateway_1ebszvd" targetRef="mail_informationen">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${antrag_vollstaendig_pruefungsamt == 'false'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0au3vkk" sourceRef="angaben_pruefen_vorsitzender" targetRef="Gateway_15dlx3h" />
@@ -170,7 +170,7 @@
     </bpmn:businessRuleTask>
     <bpmn:sequenceFlow id="Flow_0gxw0o8" sourceRef="antrag_stellen" targetRef="ECTS_vorhanden" />
     <bpmn:sequenceFlow id="Flow_0twe69n" sourceRef="ECTS_vorhanden" targetRef="Gateway_0zeukux" />
-    <bpmn:sequenceFlow id="Flow_1xhgnqd" sourceRef="Gateway_0zeukux" targetRef="Activity_0jy8jcc">
+    <bpmn:sequenceFlow id="Flow_1xhgnqd" sourceRef="Gateway_0zeukux" targetRef="mail_ects">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!voraussetzungerfueellt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="Gateway_0zeukux">
@@ -214,13 +214,13 @@
       <bpmn:outgoing>Flow_1kx55n0</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1qh7m0g" sourceRef="abgabedatum_berechnen" targetRef="Gateway_0l42j6b" />
-    <bpmn:sequenceFlow id="Flow_0csl5tn" sourceRef="Activity_06h89t1" targetRef="pruefungsamtpas" />
+    <bpmn:sequenceFlow id="Flow_0csl5tn" sourceRef="mail_informationen" targetRef="pruefungsamtpas" />
     <bpmn:userTask id="pruefungsamtpas" name="Informationen nachreichen" camunda:formRef="Infonachreichen" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:documentation>Falls der Antrag nicht vollständig ist, wird der Studierende informiert, dass die fehlenden Informationen nachgereicht werden müssen. Daraufhin muss der Antrag erneut gestellt werden. </bpmn:documentation>
       <bpmn:incoming>Flow_0csl5tn</bpmn:incoming>
       <bpmn:outgoing>Flow_019bo93</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_07r3tin" sourceRef="Activity_0jy8jcc" targetRef="Gateway_087hwdl" />
+    <bpmn:sequenceFlow id="Flow_07r3tin" sourceRef="mail_ects" targetRef="Gateway_087hwdl" />
     <bpmn:exclusiveGateway id="Gateway_0l42j6b">
       <bpmn:incoming>Flow_1qh7m0g</bpmn:incoming>
       <bpmn:incoming>Flow_036lso0</bpmn:incoming>
@@ -270,7 +270,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     </bpmn:businessRuleTask>
     <bpmn:sequenceFlow id="Flow_13taqq2" sourceRef="verlaengerung_beantragen" targetRef="Neues_Abgabedatum" />
     <bpmn:sequenceFlow id="Flow_1h26hw5" sourceRef="Neues_Abgabedatum" targetRef="verlaengerung_berechen" />
-    <bpmn:sequenceFlow id="Flow_1e11g8q" sourceRef="abgabe_timer" targetRef="abgabe_timer_meldung" />
+    <bpmn:sequenceFlow id="Flow_1e11g8q" sourceRef="abgabe_timer" targetRef="mail_abgabe" />
     <bpmn:boundaryEvent id="abgabe_timer" name="Abgabedatum Timer" attachedToRef="abschlussarbeit_bearbeiten">
       <bpmn:documentation>Tritt ein wenn der Studierende die Bearbeitungszeit überschreitet. Er erhält eine Meldung, dass die Abschlussarbeit nicht bestanden wurde. </bpmn:documentation>
       <bpmn:outgoing>Flow_1e11g8q</bpmn:outgoing>
@@ -278,23 +278,10 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <bpmn:timeDate xsi:type="bpmn:tFormalExpression">abgabe_datum</bpmn:timeDate>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
-    <bpmn:sequenceFlow id="Flow_1n3bqp1" sourceRef="abgabe_timer_meldung" targetRef="nicht_bestanden_zeit_ueberschritten" />
+    <bpmn:sequenceFlow id="Flow_1n3bqp1" sourceRef="mail_abgabe" targetRef="nicht_bestanden_zeit_ueberschritten" />
     <bpmn:endEvent id="nicht_bestanden_zeit_ueberschritten" name="Arbeit nicht bestanden">
       <bpmn:incoming>Flow_1n3bqp1</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:task id="Activity_06h89t1" name="Student Informieren">
-      <bpmn:incoming>Flow_0hdxnbu</bpmn:incoming>
-      <bpmn:outgoing>Flow_0csl5tn</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="abgabedatum_berechnen" name="Abgabedatum Berechnen">
-      <bpmn:incoming>Flow_0vfyt83</bpmn:incoming>
-      <bpmn:outgoing>Flow_1qh7m0g</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="abgabe_timer_meldung" name="Student Informieren">
-      <bpmn:documentation>Diese Task wird aufgerufen, wenn der Studierende die Bearbeitungszeit überschreitet. Er erhält eine Meldung, dass die Abschlussarbeit nicht bestanden wurde. </bpmn:documentation>
-      <bpmn:incoming>Flow_1e11g8q</bpmn:incoming>
-      <bpmn:outgoing>Flow_1n3bqp1</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:task id="abgabedatum_anpassen" name="Abgabedatum Anpassen">
       <bpmn:incoming>Flow_0xatj51</bpmn:incoming>
       <bpmn:outgoing>Flow_036lso0</bpmn:outgoing>
@@ -303,10 +290,23 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_1h26hw5</bpmn:incoming>
       <bpmn:outgoing>Flow_0v3ow8p</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:serviceTask id="Activity_0jy8jcc" name="Student Informieren" camunda:class="fra.uas.pas.delegate.EmailDelegate">
+    <bpmn:serviceTask id="mail_ects" name="Student Informieren" camunda:class="fra.uas.pas.delegate.email.MissingECTS">
       <bpmn:documentation>Falls der Studierende die ECTS vorgaben nicht erfüllt oder bei der Eingabe einen Fehler gemacht hat, bekommt er eine Fehlermeldung. Daraufhin sollte er seine Eingaben prüfen oder sich erst Anmelden, wenn die nötigen ECTS für die Anmeldung einer Arbeit vorhanden sind. </bpmn:documentation>
       <bpmn:incoming>Flow_1xhgnqd</bpmn:incoming>
       <bpmn:outgoing>Flow_07r3tin</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="mail_informationen" name="Student Informieren" camunda:class="fra.uas.pas.delegate.email.MissingInformation">
+      <bpmn:incoming>Flow_0hdxnbu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0csl5tn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="mail_abgabe" name="Student Informieren" camunda:class="">
+      <bpmn:documentation>Diese Task wird aufgerufen, wenn der Studierende die Bearbeitungszeit überschreitet. Er erhält eine Meldung, dass die Abschlussarbeit nicht bestanden wurde. </bpmn:documentation>
+      <bpmn:incoming>Flow_1e11g8q</bpmn:incoming>
+      <bpmn:outgoing>Flow_1n3bqp1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="abgabedatum_berechnen" name="Abgabedatum Berechnen" camunda:class="">
+      <bpmn:incoming>Flow_0vfyt83</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qh7m0g</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -463,23 +463,23 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
           <dc:Bounds x="3342" y="66" width="55" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0gykbia_di" bpmnElement="Activity_06h89t1">
-        <dc:Bounds x="2050" y="830" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_04mr4wj_di" bpmnElement="abgabedatum_berechnen">
-        <dc:Bounds x="2710" y="1120" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_117tin9_di" bpmnElement="abgabe_timer_meldung">
-        <dc:Bounds x="3170" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_113bar6_di" bpmnElement="abgabedatum_anpassen">
         <dc:Bounds x="3280" y="850" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_04kh30c_di" bpmnElement="verlaengerung_berechen">
         <dc:Bounds x="3500" y="900" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0soislm_di" bpmnElement="Activity_0jy8jcc">
+      <bpmndi:BPMNShape id="Activity_0soislm_di" bpmnElement="mail_ects">
         <dc:Bounds x="780" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jq1ptv_di" bpmnElement="mail_informationen">
+        <dc:Bounds x="2050" y="830" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lfe61e_di" bpmnElement="mail_abgabe">
+        <dc:Bounds x="3170" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fji9w1_di" bpmnElement="abgabedatum_berechnen">
+        <dc:Bounds x="2710" y="1120" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0fjpd6o_di" bpmnElement="abgabe_timer">
         <dc:Bounds x="3062" y="172" width="36" height="36" />
