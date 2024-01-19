@@ -1,4 +1,4 @@
-package fra.uas.pas.camunda.service;
+package fra.uas.pas.camunda;
 
 import org.camunda.bpm.engine.IdentityService;
 import org.camunda.bpm.engine.identity.User;

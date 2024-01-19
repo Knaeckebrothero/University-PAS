@@ -1,6 +1,6 @@
 package fra.uas.pas.delegate.email;
 
-import fra.uas.pas.camunda.service.CamundaUserFetcher;
+import fra.uas.pas.camunda.CamundaUserFetcher;
 import fra.uas.pas.service.EmailService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;

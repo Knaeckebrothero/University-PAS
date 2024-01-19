@@ -20,9 +20,8 @@
         <bpmn:flowNodeRef>antrag_pruefen_amt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1eqic5n</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Neues_Abgabedatum</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>abgabedatum_anpassen</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>verlaengerung_berechen</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>mail_informationen</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>abgabedatum_anpassen</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_17pglki" name="Erstbetreuer">
         <bpmn:flowNodeRef>Gateway_0os05bt</bpmn:flowNodeRef>
@@ -256,12 +255,11 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_0ue70fz</bpmn:incoming>
       <bpmn:outgoing>Flow_13taqq2</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0v3ow8p" sourceRef="verlaengerung_berechen" targetRef="verlaengerung_pruefen" />
     <bpmn:sequenceFlow id="Flow_0xatj51" sourceRef="verlaengerung_pruefen" targetRef="abgabedatum_anpassen" />
     <bpmn:userTask id="verlaengerung_pruefen" name="Verlängerung prüfen" camunda:formRef="Verlaengerungsantragspruefung" camunda:formRefBinding="latest" camunda:assignee="demo">
       <bpmn:documentation>Der Antrag zur Verlängerung der Bearbeitungszeit wird auf Validität durch den Vorsitz geprüft.</bpmn:documentation>
       <bpmn:extensionElements />
-      <bpmn:incoming>Flow_0v3ow8p</bpmn:incoming>
+      <bpmn:incoming>Flow_1h26hw5</bpmn:incoming>
       <bpmn:outgoing>Flow_0xatj51</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:businessRuleTask id="Neues_Abgabedatum" name="Maximale Verlängerungsdauer" camunda:decisionRef="maximale_verlaengerung">
@@ -269,7 +267,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:outgoing>Flow_1h26hw5</bpmn:outgoing>
     </bpmn:businessRuleTask>
     <bpmn:sequenceFlow id="Flow_13taqq2" sourceRef="verlaengerung_beantragen" targetRef="Neues_Abgabedatum" />
-    <bpmn:sequenceFlow id="Flow_1h26hw5" sourceRef="Neues_Abgabedatum" targetRef="verlaengerung_berechen" />
+    <bpmn:sequenceFlow id="Flow_1h26hw5" sourceRef="Neues_Abgabedatum" targetRef="verlaengerung_pruefen" />
     <bpmn:sequenceFlow id="Flow_1e11g8q" sourceRef="abgabe_timer" targetRef="mail_abgabe" />
     <bpmn:boundaryEvent id="abgabe_timer" name="Abgabedatum Timer" attachedToRef="abschlussarbeit_bearbeiten">
       <bpmn:documentation>Tritt ein wenn der Studierende die Bearbeitungszeit überschreitet. Er erhält eine Meldung, dass die Abschlussarbeit nicht bestanden wurde. </bpmn:documentation>
@@ -282,14 +280,6 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
     <bpmn:endEvent id="nicht_bestanden_zeit_ueberschritten" name="Arbeit nicht bestanden">
       <bpmn:incoming>Flow_1n3bqp1</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:task id="abgabedatum_anpassen" name="Abgabedatum Anpassen">
-      <bpmn:incoming>Flow_0xatj51</bpmn:incoming>
-      <bpmn:outgoing>Flow_036lso0</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="verlaengerung_berechen" name="Verlängerung Berechnen">
-      <bpmn:incoming>Flow_1h26hw5</bpmn:incoming>
-      <bpmn:outgoing>Flow_0v3ow8p</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:serviceTask id="mail_ects" name="Student Informieren" camunda:class="fra.uas.pas.delegate.email.MissingECTS">
       <bpmn:documentation>Falls der Studierende die ECTS vorgaben nicht erfüllt oder bei der Eingabe einen Fehler gemacht hat, bekommt er eine Fehlermeldung. Daraufhin sollte er seine Eingaben prüfen oder sich erst Anmelden, wenn die nötigen ECTS für die Anmeldung einer Arbeit vorhanden sind. </bpmn:documentation>
       <bpmn:incoming>Flow_1xhgnqd</bpmn:incoming>
@@ -304,9 +294,13 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_1e11g8q</bpmn:incoming>
       <bpmn:outgoing>Flow_1n3bqp1</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="abgabedatum_berechnen" name="Abgabedatum Berechnen" camunda:class="">
+    <bpmn:serviceTask id="abgabedatum_berechnen" name="Abgabedatum Berechnen" camunda:class="fra.uas.pas.delegate.date.SetSubmissionDate">
       <bpmn:incoming>Flow_0vfyt83</bpmn:incoming>
       <bpmn:outgoing>Flow_1qh7m0g</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="abgabedatum_anpassen" name="Abgabedatum Anpassen" camunda:class="fra.uas.pas.delegate.date.RecalculateSubmissionDate">
+      <bpmn:incoming>Flow_0xatj51</bpmn:incoming>
+      <bpmn:outgoing>Flow_036lso0</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -463,12 +457,6 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
           <dc:Bounds x="3342" y="66" width="55" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_113bar6_di" bpmnElement="abgabedatum_anpassen">
-        <dc:Bounds x="3280" y="850" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_04kh30c_di" bpmnElement="verlaengerung_berechen">
-        <dc:Bounds x="3500" y="900" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0soislm_di" bpmnElement="mail_ects">
         <dc:Bounds x="780" y="160" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -480,6 +468,10 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0fji9w1_di" bpmnElement="abgabedatum_berechnen">
         <dc:Bounds x="2710" y="1120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oc0q12_di" bpmnElement="abgabedatum_anpassen">
+        <dc:Bounds x="3280" y="850" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0fjpd6o_di" bpmnElement="abgabe_timer">
         <dc:Bounds x="3062" y="172" width="36" height="36" />
@@ -671,10 +663,6 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
         <di:waypoint x="3330" y="330" />
         <di:waypoint x="3055" y="330" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0v3ow8p_di" bpmnElement="Flow_0v3ow8p">
-        <di:waypoint x="3550" y="980" />
-        <di:waypoint x="3550" y="1120" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0xatj51_di" bpmnElement="Flow_0xatj51">
         <di:waypoint x="3500" y="1160" />
         <di:waypoint x="3330" y="1160" />
@@ -686,7 +674,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1h26hw5_di" bpmnElement="Flow_1h26hw5">
         <di:waypoint x="3550" y="870" />
-        <di:waypoint x="3550" y="900" />
+        <di:waypoint x="3550" y="1120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1e11g8q_di" bpmnElement="Flow_1e11g8q">
         <di:waypoint x="3098" y="190" />
