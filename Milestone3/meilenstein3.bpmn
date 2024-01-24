@@ -50,6 +50,7 @@
         <bpmn:flowNodeRef>angaben_pruefen_vorsitzender</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>abgabedatum_berechnen</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>verlaengerung_pruefen</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_193muhn</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="Start_Event" name="Anmeldung der Abschlussarbeit">
@@ -119,7 +120,7 @@
       <bpmn:outgoing>Flow_0h5zh4n</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:serviceTask id="abgabedatum_berechnen" name="Abgabedatum Berechnen" camunda:class="fra.uas.pas.delegate.date.SetSubmissionDate">
-      <bpmn:incoming>Flow_0q60ilg</bpmn:incoming>
+      <bpmn:incoming>Flow_0jwkz29</bpmn:incoming>
       <bpmn:outgoing>Flow_1yprzcn</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:userTask id="pruefungsamtpas" name="Informationen nachreichen" camunda:formRef="Infonachreichen" camunda:formRefBinding="latest" camunda:assignee="demo">
@@ -254,7 +255,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_0ucddk7</bpmn:incoming>
       <bpmn:outgoing>Flow_06j1coh</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0q60ilg" name="nein" sourceRef="Gateway_15dlx3h" targetRef="abgabedatum_berechnen">
+    <bpmn:sequenceFlow id="Flow_0q60ilg" name="nein" sourceRef="Gateway_15dlx3h" targetRef="Activity_193muhn">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_fachlich_inhaltlich_korrekt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_11ux3dg" sourceRef="Gateway_0l42j6b" targetRef="abschlussarbeit_bearbeiten" />
@@ -293,6 +294,11 @@ Master 22 Wochen</bpmn:documentation>
       <bpmn:incoming>Flow_102hhjp</bpmn:incoming>
       <bpmn:outgoing>Flow_1n3bqp1</bpmn:outgoing>
     </bpmn:sendTask>
+    <bpmn:businessRuleTask id="Activity_193muhn" name="Bearbeitungs-&#10;dauer festlegen" camunda:resultVariable="Bearbeitungszeit" camunda:decisionRef="bearbeitungsdauer_festlegen" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>Flow_0q60ilg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jwkz29</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:sequenceFlow id="Flow_0jwkz29" sourceRef="Activity_193muhn" targetRef="abgabedatum_berechnen" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17pmjaa">
@@ -464,6 +470,10 @@ Master 22 Wochen</bpmn:documentation>
         <bpmndi:BPMNLabel>
           <dc:Bounds x="3236" y="92" width="68" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0uoz5aa" bpmnElement="Activity_193muhn">
+        <dc:Bounds x="2530" y="1150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0zvy7bc_di" bpmnElement="Flow_0zvy7bc">
         <di:waypoint x="298" y="340" />
@@ -637,9 +647,9 @@ Master 22 Wochen</bpmn:documentation>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0q60ilg_di" bpmnElement="Flow_0q60ilg">
         <di:waypoint x="2405" y="1190" />
-        <di:waypoint x="2710" y="1190" />
+        <di:waypoint x="2530" y="1190" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2485" y="1172" width="21" height="14" />
+          <dc:Bounds x="2459" y="1172" width="21" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_11ux3dg_di" bpmnElement="Flow_11ux3dg">
@@ -661,6 +671,10 @@ Master 22 Wochen</bpmn:documentation>
       <bpmndi:BPMNEdge id="Flow_0u6hu4l_di" bpmnElement="Flow_0u6hu4l">
         <di:waypoint x="3295" y="260" />
         <di:waypoint x="3525" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jwkz29_di" bpmnElement="Flow_0jwkz29">
+        <di:waypoint x="2630" y="1190" />
+        <di:waypoint x="2710" y="1190" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
