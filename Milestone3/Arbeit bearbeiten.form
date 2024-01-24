@@ -34,16 +34,16 @@
       "readonly": true
     },
     {
-      "label": "Ihr verbindliches Abgabedatum",
+      "label": "Abgabedatum",
       "type": "textfield",
       "layout": {
-        "row": "Row_1tsujg7",
+        "row": "Row_0oqu5vs",
         "columns": null
       },
-      "id": "Field_16k7r0h",
+      "id": "Field_0d21ltx",
       "key": "abgabe_datum",
       "disabled": true,
-      "readonly": true
+      "readonly": false
     },
     {
       "label": "Verlängerung gewünscht",

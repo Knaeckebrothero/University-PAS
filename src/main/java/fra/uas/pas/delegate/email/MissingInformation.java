@@ -16,21 +16,15 @@ public class MissingInformation implements JavaDelegate {
     @Autowired
     private EmailService emailService;
 
-    @Autowired
-    private TaskService taskService;
-
     // Define the fetcher to get information about the user
     @Autowired
     private CamundaUserFetcher fetcher;
 
     @Autowired
-    IdentityService identityService;
+    private IdentityService identityService;
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-
-        // Get the relevant task to fetch the assignee
-        Task task = taskService.createTaskQuery().executionId(execution.getId()).taskDefinitionKey("antrag_stellen").singleResult();
 
         // Email Subject
         String subject = "Fehlende Informationen";

@@ -5,8 +5,6 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.camunda.bpm.engine.TaskService;
-import org.camunda.bpm.engine.task.Task;
 import fra.uas.pas.camunda.CamundaUserFetcher;
 import org.camunda.bpm.engine.IdentityService;
 
@@ -15,9 +13,6 @@ public class MissingECTS implements JavaDelegate {
 
     @Autowired
     private EmailService emailService;
-
-    @Autowired
-    private TaskService taskService;
 
     // Define the fetcher to get information about the user
     @Autowired
@@ -28,9 +23,6 @@ public class MissingECTS implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-
-        // Get the relevant task to fetch the assignee
-        Task task = taskService.createTaskQuery().executionId(execution.getId()).taskDefinitionKey("antrag_stellen").singleResult();
 
         // Email Subject
         String subject = "Fehlende ECTS";

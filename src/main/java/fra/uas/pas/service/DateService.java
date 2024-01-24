@@ -2,28 +2,35 @@ package fra.uas.pas.service;
 
 import org.springframework.stereotype.Service;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 @Service
 public class DateService {
+    public String calculateSubmissionDate(int days, Object submissionDate) {
 
-        public Date calculateSubmissionDate(int days, Object submissionDate) {
+        Date newSubmissionDate;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-            Date newSubmissionDate;
-
-            // Check if the submission date is null
-            if (submissionDate == null) {
-                // Assign the current date to the submission date
-                newSubmissionDate = new Date();
-            } else {
-                // Convert the submission date to a date object
-                newSubmissionDate = new Date((long) submissionDate);
+        // Check if the submission date is null
+        if (submissionDate == null) {
+            // Assign the current date to the submission date
+            newSubmissionDate = new Date();
+        } else {
+            // Parse the submission date from string to Date
+            try {
+                newSubmissionDate = sdf.parse((String) submissionDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return null; // handle the error in way suitable to your needs
             }
-
-            // Add the days to the submission date
-            newSubmissionDate.setTime(newSubmissionDate.getTime() +
-                    (long) days * 24 * 60 * 60 * 1000);
-
-            // Return the submission date
-            return newSubmissionDate;
         }
+
+        // Add the days to the submission date
+        newSubmissionDate.setTime(newSubmissionDate.getTime() +
+                (long) days * 24 * 60 * 60 * 1000);
+
+        // Return the submission date
+        return sdf.format(newSubmissionDate);
+    }
 }

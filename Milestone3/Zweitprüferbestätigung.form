@@ -181,7 +181,8 @@
       "key": "betreuung2",
       "validate": {
         "required": true
-      }
+      },
+      "defaultValue": "ablehnen"
     }
   ],
   "type": "default",
