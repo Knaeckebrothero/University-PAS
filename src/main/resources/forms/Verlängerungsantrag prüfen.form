@@ -1,0 +1,91 @@
+{
+  "components": [
+    {
+      "label": "Grund",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0nfvpfk",
+        "columns": null
+      },
+      "id": "Field_0zvhjhy",
+      "key": "grund_verlaengerung",
+      "disabled": true,
+      "readonly": true
+    },
+    {
+      "label": "Krankheit",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0r2e9q8",
+        "columns": null
+      },
+      "id": "Field_19qwjgh",
+      "key": "krankheit_begruendung",
+      "conditional": {
+        "hide": "=grund_verlaengerung != \"krank\""
+      },
+      "readonly": true,
+      "disabled": true
+    },
+    {
+      "label": "Extern",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0rlvsf9",
+        "columns": null
+      },
+      "id": "Field_0t382h9",
+      "key": "extern_begruendung",
+      "conditional": {
+        "hide": "=grund_verlaengerung != \"extern\""
+      },
+      "readonly": true,
+      "disabled": true
+    },
+    {
+      "label": "Verfügbare Tage",
+      "type": "number",
+      "layout": {
+        "row": "Row_1jb3z26",
+        "columns": null
+      },
+      "id": "Field_0v60145",
+      "key": "preview_anzahl_verlaengerung",
+      "disabled": true,
+      "readonly": true
+    },
+    {
+      "label": "Genehmigte Tage",
+      "type": "number",
+      "layout": {
+        "row": "Row_1jb3z26",
+        "columns": null
+      },
+      "id": "Field_1hm9we2",
+      "key": "anzahl_verlaengerung",
+      "defaultValue": 0
+    },
+    {
+      "label": "Antrag valide",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1ez508d",
+        "columns": null
+      },
+      "id": "Field_12bnb70",
+      "key": "checkbox_antrag_valide",
+      "validate": {
+        "required": false
+      }
+    }
+  ],
+  "type": "default",
+  "id": "Verlaengerungsantragspruefung",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.16.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 11
+}
