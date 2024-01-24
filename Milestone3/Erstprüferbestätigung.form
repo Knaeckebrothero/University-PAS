@@ -164,11 +164,11 @@
       "values": [
         {
           "label": "Bestätigen",
-          "value": "true"
+          "value": "bestaetigen"
         },
         {
           "label": "Ablehnen",
-          "value": "false"
+          "value": "ablehnen"
         }
       ],
       "label": "Betreuung Zu/Absagen",

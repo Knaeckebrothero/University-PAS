@@ -20,8 +20,12 @@
           "value": "Bachelor"
         },
         {
-          "label": "Master",
-          "value": "Master"
+          "label": "Master 3. Semester",
+          "value": "Master 3. Semester"
+        },
+        {
+          "label": "Master 4. Semester",
+          "value": "Master 4. Semester"
         }
       ],
       "label": "Art des Abschlusses",
@@ -46,19 +50,6 @@
       },
       "id": "Field_1d3u00n",
       "key": "ECTS"
-    },
-    {
-      "label": "Semster",
-      "type": "number",
-      "layout": {
-        "row": "Row_1t75cpb",
-        "columns": null
-      },
-      "id": "Field_0osicyt",
-      "key": "semester",
-      "conditional": {
-        "hide": "=abschlussart != \"Master\" "
-      }
     },
     {
       "label": "Name Student",
@@ -152,6 +143,10 @@
         {
           "label": "Trost",
           "value": "Trost"
+        },
+        {
+          "label": "Extern",
+          "value": "extern"
         }
       ],
       "label": "Zweitbetreuer",
