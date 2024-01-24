@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.task.Task;
 import fra.uas.pas.camunda.CamundaUserFetcher;
+import org.camunda.bpm.engine.IdentityService;
 
 @Component
 public class MissingECTS implements JavaDelegate {
@@ -22,6 +23,9 @@ public class MissingECTS implements JavaDelegate {
     @Autowired
     private CamundaUserFetcher fetcher;
 
+    @Autowired
+    IdentityService identityService;
+
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
@@ -32,14 +36,14 @@ public class MissingECTS implements JavaDelegate {
         String subject = "Fehlende ECTS";
 
         // Email Content
-        String content = "Sehr geehrter " + fetcher.getUserName(task.getAssignee()) + ",\n\n"
+        String content = "Sehr geehrter " + fetcher.getUserName() + ",\n\n"
                 + "leider fehlen ihnen die notwendigen ECTS Punkte.\n\n\n"
                 + "Mit Freundlichen Grüßen,\n\n"
                 + "Ihr Prüfungsamt";
 
         // Send the email
         emailService.sendSimpleMessage(
-                fetcher.getUserEmail(task.getAssignee()),
+                fetcher.getUserEmail(),
                 subject,
                 content
         );

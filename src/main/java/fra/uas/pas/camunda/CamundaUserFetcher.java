@@ -2,22 +2,16 @@ package fra.uas.pas.camunda;
 
 import org.camunda.bpm.engine.IdentityService;
 import org.camunda.bpm.engine.identity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CamundaUserFetcher {
 
-    @Autowired
-    private IdentityService identityService;
-
-    public String getUserName(String userId) {
-        User user = identityService.createUserQuery().userId(userId).singleResult();
-        return user != null ? user.getFirstName() + " " + user.getLastName() : null;
+    public String getUserName() {
+        return "demo student"; // TODO: Change this to fetch the matrikelnummer and fetch user based on that
     }
 
-    public String getUserEmail(String userId) {
-        User user = identityService.createUserQuery().userId(userId).singleResult();
-        return user != null ? user.getEmail() : null;
+    public String getUserEmail() {
+        return "Overlygenericaddress@pm.me"; // TODO: Change this to fetch the matrikelnummer and append @studmail
     }
 }

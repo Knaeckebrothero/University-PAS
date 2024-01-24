@@ -8,6 +8,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.camunda.bpm.engine.IdentityService;
 
 @Component
 public class MissingInformation implements JavaDelegate {
@@ -22,6 +23,9 @@ public class MissingInformation implements JavaDelegate {
     @Autowired
     private CamundaUserFetcher fetcher;
 
+    @Autowired
+    IdentityService identityService;
+
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
@@ -32,7 +36,7 @@ public class MissingInformation implements JavaDelegate {
         String subject = "Fehlende Informationen";
 
         // Email Content
-        String content = "Sehr geehrter " + fetcher.getUserName(task.getAssignee()) + ",\n\n"
+        String content = "Sehr geehrter " + fetcher.getUserName() + ",\n\n"
                 + "leider fehlen noch folgende Informationen:\n"
                 + execution.getVariable("infos_nachreichen_pruefungsamt") + "\n\n"
                 + "Bitte reichen Sie diese Informationen nach.\n\n\n"
@@ -41,7 +45,7 @@ public class MissingInformation implements JavaDelegate {
 
         // Send the email
         emailService.sendSimpleMessage(
-                fetcher.getUserEmail(task.getAssignee()),
+                fetcher.getUserEmail(),
                 subject,
                 content
         );

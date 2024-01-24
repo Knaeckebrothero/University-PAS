@@ -8,6 +8,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.camunda.bpm.engine.IdentityService;
 
 @Component
 public class SubmissionOverdue implements JavaDelegate {
@@ -22,6 +23,9 @@ public class SubmissionOverdue implements JavaDelegate {
     @Autowired
     private CamundaUserFetcher fetcher;
 
+    @Autowired
+    IdentityService identityService;
+
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
@@ -32,7 +36,7 @@ public class SubmissionOverdue implements JavaDelegate {
         String subject = "Abgabedatum Überschritten";
 
         // Email Content
-        String content = "Sehr geehrter " + fetcher.getUserName(task.getAssignee()) + ",\n\n"
+        String content = "Sehr geehrter " + fetcher.getUserName() + ",\n\n"
                 + "leider haben Sie das Abgabedatum " + execution.getVariable("abgabe_datum") + "nicht " +
                 "eingehalten.\n"
                 + "Sie sind somit leider durchgefallen.\n\n\n"
@@ -41,7 +45,7 @@ public class SubmissionOverdue implements JavaDelegate {
 
         // Send the email
         emailService.sendSimpleMessage(
-                fetcher.getUserEmail(task.getAssignee()),
+                fetcher.getUserEmail(),
                 subject,
                 content
         );

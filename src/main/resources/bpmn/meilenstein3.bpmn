@@ -289,7 +289,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_0hdxnbu</bpmn:incoming>
       <bpmn:outgoing>Flow_0csl5tn</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="mail_abgabe" name="Student Informieren" camunda:class="">
+    <bpmn:serviceTask id="mail_abgabe" name="Student Informieren" camunda:class="fra.uas.pas.delegate.email.SubmissionOverdue">
       <bpmn:documentation>Diese Task wird aufgerufen, wenn der Studierende die Bearbeitungszeit überschreitet. Er erhält eine Meldung, dass die Abschlussarbeit nicht bestanden wurde. </bpmn:documentation>
       <bpmn:incoming>Flow_1e11g8q</bpmn:incoming>
       <bpmn:outgoing>Flow_1n3bqp1</bpmn:outgoing>
