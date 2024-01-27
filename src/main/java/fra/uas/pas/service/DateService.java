@@ -10,7 +10,8 @@ public class DateService {
     public String calculateSubmissionDate(int days, Object submissionDate) {
 
         Date newSubmissionDate;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        SimpleDateFormat sdf = new SimpleDateFormat(
+                "yyyy-MM-dd'T'HH:mm:ss'Z'");
 
         // Check if the submission date is null
         if (submissionDate == null) {
@@ -22,7 +23,7 @@ public class DateService {
                 newSubmissionDate = sdf.parse((String) submissionDate);
             } catch (ParseException e) {
                 e.printStackTrace();
-                return null; // handle the error in way suitable to your needs
+                return null;
             }
         }
 

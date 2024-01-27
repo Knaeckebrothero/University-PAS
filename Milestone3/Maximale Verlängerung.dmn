@@ -7,13 +7,13 @@
           <text></text>
         </inputExpression>
       </input>
-      <output id="Output_1" label="Maximale Verlängerung" name="Maximale Verlängerung" typeRef="integer" />
+      <output id="Output_1" label="Maximale Verlängerung" name="preview_anzahl_verlaengerung" typeRef="integer" />
       <rule id="DecisionRule_1nh6j8p">
         <inputEntry id="UnaryTests_0bduq3a">
           <text>"Bachelor"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1474ng9">
-          <text>6</text>
+          <text>42</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0sb0rz4">
@@ -21,7 +21,7 @@
           <text>"Master 3. Semester"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1ukudyh">
-          <text>8</text>
+          <text>56</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0a4lhg5">
@@ -29,7 +29,7 @@
           <text>"Master 4. Semester"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1160xlk">
-          <text>8</text>
+          <text>56</text>
         </outputEntry>
       </rule>
     </decisionTable>

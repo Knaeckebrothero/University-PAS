@@ -17,6 +17,12 @@ public class RecalculateSubmissionDate implements JavaDelegate {
         // Get the current extension period
         int extensionPeriod = (int) execution.getVariable("anzahl_verlaengerung");
 
+        // Check if the extension period is 0 and breaks the function if no extension period is left
+        if ((int)execution.getVariable(
+                "preview_anzahl_verlaengerung") <= 0){
+            return;
+        }
+
         // Set the new submission date
         execution.setVariable("abgabe_datum",
                 ds.calculateSubmissionDate(

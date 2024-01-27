@@ -10,14 +10,14 @@
           <text>"Bachelor","Master 3. Semester","Master 4. Semester"</text>
         </inputValues>
       </input>
-      <output id="Output_1" label="Bearbeitungszeit" name="Bearbeitungszeit" typeRef="string" biodi:width="192" />
+      <output id="Output_1" label="Bearbeitungszeit" name="bearbeitungszeit_in_tagen" typeRef="integer" biodi:width="192" />
       <rule id="DecisionRule_0i92m6b">
         <description></description>
         <inputEntry id="UnaryTests_0uc25h1">
           <text>"Bachelor"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0e9opw5">
-          <text>"9 Wochen"</text>
+          <text>63</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1va8g5y">
@@ -26,7 +26,7 @@
           <text>"Master 3. Semester"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_17c0quj">
-          <text>"22 Wochen"</text>
+          <text>154</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_02c3f2j">
@@ -35,7 +35,7 @@
           <text>"Master 4. Semester"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_03g02i5">
-          <text>"22 Wochen"</text>
+          <text>154</text>
         </outputEntry>
       </rule>
     </decisionTable>

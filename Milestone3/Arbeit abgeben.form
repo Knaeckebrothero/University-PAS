@@ -1,0 +1,24 @@
+{
+  "components": [
+    {
+      "label": "Finales Abgabedatum",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1qk6g7b",
+        "columns": null
+      },
+      "id": "Field_06ykg9j",
+      "key": "abgabe_datum",
+      "disabled": true
+    }
+  ],
+  "type": "default",
+  "id": "arbeit_abgabe",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.16.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 11
+}
