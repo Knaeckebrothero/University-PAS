@@ -8,9 +8,9 @@
         "columns": null
       },
       "id": "Field_1kkva03",
-      "key": "textfield_e32re",
+      "key": "studiengang",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": false
     },
@@ -22,7 +22,7 @@
         "columns": null
       },
       "id": "Field_1paiogw",
-      "key": "select_hxofn3a",
+      "key": "abschlussart",
       "readonly": false
     },
     {
@@ -36,19 +36,6 @@
       "key": "ECTS"
     },
     {
-      "label": "Semester",
-      "type": "textfield",
-      "layout": {
-        "row": "Row_0h5vl97",
-        "columns": null
-      },
-      "id": "Field_04yqlld",
-      "key": "semester",
-      "conditional": {
-        "hide": "=abschlussart != \"Master\" "
-      }
-    },
-    {
       "label": "Name Student",
       "type": "textfield",
       "layout": {
@@ -56,9 +43,9 @@
         "columns": null
       },
       "id": "Field_05zqiby",
-      "key": "textfield_brlkyb",
+      "key": "studentname",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": false
     },
@@ -70,9 +57,9 @@
         "columns": null
       },
       "id": "Field_11bxkob",
-      "key": "textfield_vsuzrm",
+      "key": "matrikelnummer",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": false
     },
@@ -84,9 +71,9 @@
         "columns": null
       },
       "id": "Field_156rmc1",
-      "key": "textfield_b1zw2",
+      "key": "titel",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": false
     },
@@ -98,9 +85,9 @@
         "columns": null
       },
       "id": "Field_0ytykyv",
-      "key": "textfield_nrqgn9",
+      "key": "erstbetreuer",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": false
     },
@@ -112,9 +99,9 @@
         "columns": null
       },
       "id": "Field_1cv1i8v",
-      "key": "textfield_2637zl",
+      "key": "zweitbetreuer",
       "validate": {
-        "required": true
+        "required": false
       },
       "readonly": false
     },
@@ -126,7 +113,7 @@
         "columns": null
       },
       "id": "Field_1n4fdis",
-      "key": "checkbox_io2fki",
+      "key": "checkbox_englisch",
       "properties": {},
       "readonly": true
     },
@@ -138,29 +125,15 @@
         "columns": null
       },
       "id": "Field_1bg6w6h",
-      "key": "textarea_7qs99",
+      "key": "begruendung_englisch",
       "conditional": {
         "hide": "=checkbox_io2fki = false "
       },
       "validate": {
-        "required": true
-      },
-      "readonly": true
-    },
-    {
-      "label": "Betreuung Bestätigt",
-      "type": "checkbox",
-      "layout": {
-        "row": "Row_0w4esem",
-        "columns": null
-      },
-      "id": "Field_044h80q",
-      "key": "checkbox_hyec5x",
-      "validate": {
         "required": false
       },
       "readonly": true,
-      "defaultValue": true
+      "disabled": true
     },
     {
       "values": [
@@ -180,8 +153,8 @@
         "columns": null
       },
       "id": "Field_0e2ep84",
-      "key": "select_1rb6t",
-      "defaultValue": "true",
+      "key": "antrag_vollstaendig_pruefungsamt",
+      "defaultValue": "<none>",
       "readonly": true,
       "disabled": true
     },
@@ -193,7 +166,7 @@
         "columns": null
       },
       "id": "Field_0zt89cs",
-      "key": "textarea_dyh4g7",
+      "key": "infos_nachreichen_pruefungsamt",
       "conditional": {
         "hide": "=select_1rb6t = \"true\""
       },
