@@ -1,7 +1,5 @@
 package fra.uas.pas.camunda;
 
-import org.camunda.bpm.engine.IdentityService;
-import org.camunda.bpm.engine.identity.User;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +10,6 @@ public class CamundaUserFetcher {
     }
 
     public String getUserEmail() {
-        return "Overlygenericaddress@pm.me"; // TODO: Change this to fetch the matrikelnummer and append @studmail
+        return "demo@studmail"; // TODO: Change this to fetch the matrikelnummer and append @studmail
     }
 }

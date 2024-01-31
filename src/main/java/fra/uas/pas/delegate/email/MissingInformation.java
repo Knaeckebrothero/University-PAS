@@ -2,10 +2,8 @@ package fra.uas.pas.delegate.email;
 
 import fra.uas.pas.camunda.CamundaUserFetcher;
 import fra.uas.pas.service.EmailService;
-import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.camunda.bpm.engine.IdentityService;
