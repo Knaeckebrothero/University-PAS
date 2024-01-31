@@ -23,9 +23,9 @@
         <bpmn:flowNodeRef>Activity_16ae8ud</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>abschlussarbeit_bearbeiten</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>abschlussarbeit_abgeben</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>abgabe_timer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>nicht_bestanden_zeit_ueberschritten</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>abgabe_timer_meldung</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>abgabe_timer</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0locvwr" name="Erstbetreuer">
         <bpmn:flowNodeRef>arbeit_bestaetigen_1</bpmn:flowNodeRef>
@@ -73,7 +73,7 @@
     <bpmn:endEvent id="Event_0qagy7b" name="Antrag abgelehnt">
       <bpmn:incoming>Flow_1nbv2z0</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="antrag_pruefen_amt" name="Antrag prüfen" camunda:formRef="Antragpruefen" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="antrag_pruefen_amt" name="Antrag prüfen" camunda:formRef="Antragpruefen" camunda:formRefBinding="latest" camunda:assignee="Prüfungsamt">
       <bpmn:documentation>Der Antrag wird auf Vollständigkeit durch das Prüfungsamt geprüft.</bpmn:documentation>
       <bpmn:incoming>Flow_0gbhvt8</bpmn:incoming>
       <bpmn:outgoing>Flow_19qf8lq</bpmn:outgoing>
@@ -83,7 +83,7 @@
       <bpmn:outgoing>Flow_07olzfo</bpmn:outgoing>
       <bpmn:outgoing>Flow_0wbam3w</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="angaben_pruefen_vorsitzender" name="Angaben überprüfen" camunda:formRef="Vorsitzbestaetigung" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="angaben_pruefen_vorsitzender" name="Angaben überprüfen" camunda:formRef="Vorsitzbestaetigung" camunda:formRefBinding="latest" camunda:assignee="Vorsitzender">
       <bpmn:documentation>Der Antrag wird auf fachliche und inhaltliche Mängel durch den Vorsitz geprüft.</bpmn:documentation>
       <bpmn:incoming>Flow_07olzfo</bpmn:incoming>
       <bpmn:outgoing>Flow_0au3vkk</bpmn:outgoing>
@@ -94,7 +94,7 @@
       <bpmn:outgoing>Flow_001pbad</bpmn:outgoing>
       <bpmn:outgoing>Flow_09svcwk</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="antrag_stellen" name="Antrag stellen" camunda:formRef="Antragsstellung" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="antrag_stellen" name="Antrag stellen" camunda:formRef="Antragsstellung" camunda:formRefBinding="latest" camunda:assignee="Student">
       <bpmn:documentation>Der Studierende stellt einen Antrag für die Anmeldung seiner Abschlussarbeit. </bpmn:documentation>
       <bpmn:incoming>Flow_0mrsp7l</bpmn:incoming>
       <bpmn:outgoing>Flow_0gxw0o8</bpmn:outgoing>
@@ -119,20 +119,20 @@
       <bpmn:outgoing>Flow_1xhgnqd</bpmn:outgoing>
       <bpmn:outgoing>Flow_0h5zh4n</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="pruefungsamtpas" name="Informationen nachreichen" camunda:formRef="Infonachreichen" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="pruefungsamtpas" name="Informationen nachreichen" camunda:formRef="Infonachreichen" camunda:formRefBinding="latest" camunda:assignee="Student">
       <bpmn:documentation>Falls der Antrag nicht vollständig ist, wird der Studierende informiert, dass die fehlenden Informationen nachgereicht werden müssen. Daraufhin muss der Antrag erneut gestellt werden. </bpmn:documentation>
       <bpmn:incoming>Flow_0csl5tn</bpmn:incoming>
       <bpmn:outgoing>Flow_019bo93</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_0zrs5na">
-      <bpmn:incoming>Flow_038dla0</bpmn:incoming>
+      <bpmn:incoming>Flow_0eax121</bpmn:incoming>
       <bpmn:outgoing>Flow_0kblakj</bpmn:outgoing>
       <bpmn:outgoing>Flow_0ue70fz</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:endEvent id="Event_0i0g44d" name="Arbeit abgegeben">
       <bpmn:incoming>Flow_1clllaq</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="verlaengerung_beantragen" name="Verlängerung beantragen" camunda:formRef="Verlaengerungsantrag" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="verlaengerung_beantragen" name="Verlängerung beantragen" camunda:formRef="Verlaengerungsantrag" camunda:formRefBinding="latest" camunda:assignee="Student">
       <bpmn:documentation>Antrag auf Bearbeitungszeit kann gestellt werden, falls Gründe vorliegen, die er/sie nicht zu verantworten hat.
 
 Ein Grund muss ausgewählt werden.  
@@ -144,7 +144,7 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:incoming>Flow_0ue70fz</bpmn:incoming>
       <bpmn:outgoing>Flow_09rnih9</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="verlaengerung_pruefen" name="Verlängerung prüfen" camunda:formRef="Verlaengerungsantragspruefung" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="verlaengerung_pruefen" name="Verlängerung prüfen" camunda:formRef="Verlaengerungsantragspruefung" camunda:formRefBinding="latest" camunda:assignee="Vorsitzender">
       <bpmn:documentation>Der Antrag zur Verlängerung der Bearbeitungszeit wird auf Validität durch den Vorsitz geprüft.</bpmn:documentation>
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_09rnih9</bpmn:incoming>
@@ -249,31 +249,23 @@ Maximum: 6 Wochen (Bachelor) 8 Wochen (Master)
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${checkbox_fachlich_inhaltlich_korrekt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_11ux3dg" sourceRef="Gateway_0l42j6b" targetRef="abschlussarbeit_bearbeiten" />
-    <bpmn:userTask id="abschlussarbeit_bearbeiten" name="Abschlussarbeit bearbeiten" camunda:formRef="arbeit__bearbeiten" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="abschlussarbeit_bearbeiten" name="Abschlussarbeit bearbeiten" camunda:formRef="arbeit__bearbeiten" camunda:formRefBinding="latest" camunda:assignee="Student">
       <bpmn:documentation>Die Abschlussarbeit wird nun vom Studenten bearbeitet. Er hat zudem die Möglichkeit, die Bearbeitungszeit zu Verlängern indem er einen Antrag stellt.
 
 Maximale Bearbeitungszeit:
 Bachelor 9 Wochen
 Master 22 Wochen</bpmn:documentation>
       <bpmn:incoming>Flow_11ux3dg</bpmn:incoming>
-      <bpmn:outgoing>Flow_038dla0</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0eax121</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_038dla0" sourceRef="abschlussarbeit_bearbeiten" targetRef="Gateway_0zrs5na" />
     <bpmn:sequenceFlow id="Flow_1n3bqp1" sourceRef="abgabe_timer_meldung" targetRef="nicht_bestanden_zeit_ueberschritten" />
     <bpmn:sequenceFlow id="Flow_0jwkz29" sourceRef="Activity_193muhn" targetRef="abgabedatum_berechnen" />
     <bpmn:sequenceFlow id="Flow_1clllaq" sourceRef="abschlussarbeit_abgeben" targetRef="Event_0i0g44d" />
-    <bpmn:userTask id="abschlussarbeit_abgeben" name="Abschlussarbeit  abgeben" camunda:formRef="arbeit_abgabe" camunda:formRefBinding="latest" camunda:assignee="demo">
+    <bpmn:userTask id="abschlussarbeit_abgeben" name="Abschlussarbeit  abgeben" camunda:formRef="arbeit_abgabe" camunda:formRefBinding="latest" camunda:assignee="Student">
       <bpmn:documentation>Die Abschlussarbeit wurde erfolgreich vom Student bearbeitet und wird final abgegeben.</bpmn:documentation>
       <bpmn:incoming>Flow_0kblakj</bpmn:incoming>
       <bpmn:outgoing>Flow_1clllaq</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:boundaryEvent id="abgabe_timer" name="Abgabedatum Timer" attachedToRef="abschlussarbeit_bearbeiten">
-      <bpmn:documentation>Tritt ein wenn der Studierende die Bearbeitungszeit überschreitet. Er erhält eine Meldung, dass die Abschlussarbeit nicht bestanden wurde. </bpmn:documentation>
-      <bpmn:outgoing>Flow_16uba38</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1ltc6g6">
-        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">${abgabe_datum}</bpmn:timeDate>
-      </bpmn:timerEventDefinition>
-    </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_16uba38" sourceRef="abgabe_timer" targetRef="abgabe_timer_meldung" />
     <bpmn:endEvent id="nicht_bestanden_zeit_ueberschritten" name="Arbeit nicht bestanden">
       <bpmn:incoming>Flow_1n3bqp1</bpmn:incoming>
@@ -289,7 +281,7 @@ Master 22 Wochen</bpmn:documentation>
       <bpmn:incoming>Flow_0q60ilg</bpmn:incoming>
       <bpmn:outgoing>Flow_0jwkz29</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:businessRuleTask id="Neues_Abgabedatum" name="Maximale Verlängerungsdauer" camunda:decisionRef="preview_anzahl_verlaengerung">
+    <bpmn:businessRuleTask id="Neues_Abgabedatum" name="Maximale Verlängerungsdauer" camunda:resultVariable="preview_anzahl_verlaengerung" camunda:decisionRef="maximale_verlaengerung" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>Flow_1yprzcn</bpmn:incoming>
       <bpmn:outgoing>Flow_0418eqx</bpmn:outgoing>
     </bpmn:businessRuleTask>
@@ -297,6 +289,14 @@ Master 22 Wochen</bpmn:documentation>
       <bpmn:incoming>Flow_0jwkz29</bpmn:incoming>
       <bpmn:outgoing>Flow_1yprzcn</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:boundaryEvent id="abgabe_timer" name="Abgabedatum Timer" attachedToRef="abschlussarbeit_bearbeiten">
+      <bpmn:documentation>Tritt ein wenn der Studierende die Bearbeitungszeit überschreitet. Er erhält eine Meldung, dass die Abschlussarbeit nicht bestanden wurde. </bpmn:documentation>
+      <bpmn:outgoing>Flow_16uba38</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1p6d2or">
+        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">${abgabe_datum}</bpmn:timeDate>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0eax121" sourceRef="abschlussarbeit_bearbeiten" targetRef="Gateway_0zrs5na" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17pmjaa">
@@ -467,10 +467,10 @@ Master 22 Wochen</bpmn:documentation>
         <dc:Bounds x="2840" y="930" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0nnrpih_di" bpmnElement="abgabe_timer">
+      <bpmndi:BPMNShape id="Event_00yalep_di" bpmnElement="abgabe_timer">
         <dc:Bounds x="3192" y="202" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3126" y="176" width="68" height="27" />
+          <dc:Bounds x="3237.5" y="206" width="69" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0zvy7bc_di" bpmnElement="Flow_0zvy7bc">
@@ -640,10 +640,6 @@ Master 22 Wochen</bpmn:documentation>
         <di:waypoint x="3055" y="260" />
         <di:waypoint x="3110" y="260" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_038dla0_di" bpmnElement="Flow_038dla0">
-        <di:waypoint x="3210" y="260" />
-        <di:waypoint x="3525" y="260" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1n3bqp1_di" bpmnElement="Flow_1n3bqp1">
         <di:waypoint x="3450" y="150" />
         <di:waypoint x="3532" y="150" />
@@ -670,6 +666,10 @@ Master 22 Wochen</bpmn:documentation>
         <di:waypoint x="2890" y="810" />
         <di:waypoint x="2890" y="260" />
         <di:waypoint x="3005" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0eax121_di" bpmnElement="Flow_0eax121">
+        <di:waypoint x="3210" y="260" />
+        <di:waypoint x="3525" y="260" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
